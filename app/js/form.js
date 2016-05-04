@@ -1,5 +1,0 @@
-var Form = {
-    phoneNum:function(){
-
-    }
-};

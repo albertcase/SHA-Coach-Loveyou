@@ -5,13 +5,14 @@
 			var clientWidth = docEl.clientWidth;
 			var clientHeight = window.innerHeight;
 			if (!clientWidth) return;
-			if(clientWidth/clientHeight > 750/1334){
-				docEl.style.fontSize = 50 * (clientHeight / 667) + 'px';
-				//$('.wrapper').addClass('landscape');
-			}else{
-				//$('.wrapper').removeClass('landscape');
-				docEl.style.fontSize = 50 * (clientWidth / 375) + 'px';
-			}
+			//if(clientWidth/clientHeight > 750/1334){
+			//	docEl.style.fontSize = 50 * (clientHeight / 667) + 'px';
+			//	//$('.wrapper').addClass('landscape');
+			//}else{
+			//	//$('.wrapper').removeClass('landscape');
+			//	docEl.style.fontSize = 50 * (clientWidth / 375) + 'px';
+			//}
+			docEl.style.fontSize = 50 * (clientWidth / 375) + 'px';
 
 		};
 	if (!doc.addEventListener) return;

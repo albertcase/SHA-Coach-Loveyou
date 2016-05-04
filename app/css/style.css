@@ -337,15 +337,6 @@ body {
   background-size: 100%;
 }
 
-.wrap {
-  z-index: 2;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-
 .pin {
   opacity: 0;
   z-index: 1;
@@ -368,145 +359,12 @@ body {
   opacity: 1;
   z-index: 100;
 }
-.pin .inner {
-  position: absolute;
-  margin: 2.5rem auto 0;
-  width: 100%;
-}
-
-.buttons {
-  position: relative;
-  width: 5rem;
-  height: 0.86rem;
-  margin: 0.2rem auto 0rem;
-  background: #000;
-  font-size: 0.36rem;
-  color: #fff;
-  text-align: center;
-  line-height: 0.86rem;
-}
-.buttons.p1-3 {
-  margin: 0.4rem auto;
-}
-
-input[type="text"],
-input[type="tel"] {
-  -webkit-background-size: 100%;
-  background-size: 100%;
-}
-
-.form-validate {
-  position: relative;
-  width: 6.35rem;
-  margin: 0 auto;
-}
-.form-validate .input-box {
-  position: relative;
-}
-.form-validate .input-box input[type="text"], .form-validate .input-box input[type="tel"] {
-  width: 6.35rem;
-  height: 0.67rem;
-  text-align: center;
-  font-size: 0.3rem;
-  color: #efce92;
-}
-.form-validate .btn-getkeycode {
-  width: 1.68rem;
-  height: 0.42rem;
-  position: absolute;
-  top: 0.15rem;
-  right: 0.5rem;
-  background: url("../images/btn-getkeycode.png") bottom center no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-  border: none;
-}
-.form-validate .btn-getkeycode.countdown {
-  background: #5d2827;
-  border-radius: 10px;
-  color: #bf8b67;
-  font-size: 0.24rem;
-  line-height: 0.42rem;
-  padding: 0;
-}
-
-::-webkit-input-placeholder {
-  color: rgba(239, 206, 146, 0.6);
-}
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(239, 206, 146, 0.6);
-}
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(239, 206, 146, 0.6);
-}
-
-:-ms-input-placeholder {
-  color: rgba(239, 206, 146, 0.6);
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  background: transparent;
-  color: #efce92;
-}
-
-.qrcode-pop.popup {
-  width: 80%;
-  height: 80%;
-  top: 10%;
-  left: 10%;
-}
-.qrcode-pop .qrcode {
-  width: 2.4rem;
-  height: 2.4rem;
-  margin: 2rem auto 0.5rem;
-}
-.qrcode-pop .qrcode-text {
-  margin: 0 auto;
-}
-.qrcode-pop .qt-yes {
-  width: 2.34rem;
-  height: 1.07rem;
-}
-.qrcode-pop .qt-no {
-  width: 2.34rem;
-  height: 1.5rem;
-}
-.qrcode-pop .minite-30 {
-  width: 2.1rem;
-  height: 0.24rem;
-  margin: 0.4rem auto 0;
-}
 
 .share-pop .share-1 {
-  float: right;
-  width: 3.67rem;
-  height: 3.4rem;
-}
-.share-pop .share-2 {
-  clear: both;
-  width: 4.38rem;
-  height: 0.78rem;
-  margin: 0 auto;
-  position: relative;
-  top: -1.6rem;
-}
-.share-pop .p3-3 {
-  width: 4.08rem;
-  height: 4.57rem;
-  margin: 0 auto;
-  position: relative;
-}
-.share-pop .btn-close {
-  position: absolute;
-  left: 50%;
-  bottom: 1rem;
-  margin-left: -0.3rem;
+  margin: 1rem auto;
+  width: 5.05rem;
+  height: 2.03rem;
+  padding-left: 1rem;
 }
 
 .ajaxpop {
@@ -612,10 +470,10 @@ select:-webkit-autofill {
   left: 0;
 }
 
-.tips-pop .inner {
+.qrcode-pop .inner {
   position: absolute;
-  width: 3.96rem;
-  height: 1.71rem;
+  width: 4rem;
+  height: 5rem;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -624,37 +482,16 @@ select:-webkit-autofill {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.tips-pop .tips-1 {
-  width: 4rem;
-  height: 0.75rem;
-  background: url("../images/tips.png") no-repeat;
-  background-size: 100%;
-}
-.tips-pop .btn-tips {
-  width: 1.8rem;
-  height: 0.5rem;
-  float: left;
-  display: inline-block;
-  margin-left: 0.1rem;
-  background: url("../images/tips.png") no-repeat;
-  background-size: 200%;
-  background-position: 0% 100%;
-}
-.tips-pop .btn-tips.btn-tips-no {
-  background-position: 100% 100%;
-}
-.tips-pop .tips-text {
-  width: 1.91rem;
-  height: 0.29rem;
-  position: absolute;
-  left: 0.2rem;
-  bottom: 0.2rem;
+.qrcode-pop .qrcode {
+  width: 3.15rem;
+  height: 3.15rem;
+  margin: 0rem auto 0.5rem;
 }
 
 .conversation-list .avatar {
   position: absolute;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 10vw;
+  height: 10vw;
 }
 .conversation-list .words {
   position: relative;
@@ -667,6 +504,8 @@ select:-webkit-autofill {
   -moz-border-radius: 5px;
   -o-border-radius: 5px;
   -webkit-border-radius: 5px;
+  max-width: 60vw;
+  font-size: 0.3rem;
 }
 .conversation-list .words:after {
   content: '';
@@ -688,7 +527,7 @@ select:-webkit-autofill {
   top: 0;
 }
 .conversation-list .item-left .words {
-  margin-left: 1.2rem;
+  margin-left: 14vw;
   text-align: justify;
 }
 .conversation-list .item-left .words:after {
@@ -716,7 +555,7 @@ select:-webkit-autofill {
   top: 0;
 }
 .conversation-list .item-right .words {
-  margin-right: 1.2rem;
+  margin-right: 14vw;
   text-align: justify;
   background: #a0e75a;
   border: #85d45e 1px solid;
@@ -770,6 +609,11 @@ select:-webkit-autofill {
   -moz-border-radius: 5px;
   -o-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+.btn-share {
+  color: #335ff1;
+  text-decoration: underline;
 }
 
 #__bs_notify__ {

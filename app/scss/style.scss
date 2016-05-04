@@ -194,18 +194,6 @@ body{
     background-size: 100%;
   }
 }
-//for wrap
-.wrap{
-  z-index: 2;
-  position: absolute;
-  @include size(100%,100%);
-  left: 0;
-  top: 0;
-}
-//.logo{
-//  @include size(2.75rem,1.02rem);
-//  margin: 0.45rem auto 0rem;
-//}
 
 //for pin
 .pin {
@@ -227,138 +215,14 @@ body{
     opacity: 1;
     z-index: 100;
   }
-  .inner{
-    position: absolute;
-    margin: 2.5rem auto 0;
-    //margin: 125px auto 0;
-    width: 100%;
-  }
-}
-
-.buttons{
-  position: relative;
-  @include size(5rem,0.86rem);
-  margin: 0.2rem auto 0rem;
-  background: #000;
-  font-size: 0.36rem;
-  color: #fff;
-  text-align: center;
-  line-height: 0.86rem;
-  &.p1-3{
-    margin: 0.4rem auto;
-  }
-
 }
 
 
-input[type="text"],
-input[type="tel"]{
-  //border: none;
-  //background: url("../images/input-border.png") bottom center no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-}
-.form-validate{
-  position: relative;
-  width: 6.35rem;
-  margin: 0 auto;
-  .input-box{
-    position: relative;
-    input[type="text"],input[type="tel"]{
-      @include size(6.35rem,0.67rem);
-      text-align: center;
-      font-size: 0.3rem;
-      color: #efce92;
-    }
-  }
-  .btn-getkeycode{
-    @include size(1.68rem,0.42rem);
-    position: absolute;
-    top: 0.15rem;
-    right: 0.5rem;
-    background: url("../images/btn-getkeycode.png") bottom center no-repeat;
-    -webkit-background-size: 100%;
-    background-size: 100%;
-    border: none;
-    &.countdown{
-      background: #5d2827;
-      border-radius: 10px;
-      color: #bf8b67;
-      font-size: 0.24rem;
-      line-height: 0.42rem;
-      padding: 0;
-    }
-  }
-}
-::-webkit-input-placeholder{
-  color: rgba(239,206,146,0.6);
-}
-:-moz-placeholder { /* Firefox 18- */
-  color: rgba(239,206,146,0.6);
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-  color: rgba(239,206,146,0.6);
-}
-
-:-ms-input-placeholder {
-  color: rgba(239,206,146,0.6);
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  background: transparent;
-  color: #efce92;
-}
-
-.qrcode-pop{
-  &.popup{
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
-  }
-  .qrcode{
-    @include size(2.4rem,2.4rem);
-    margin: 2rem auto 0.5rem;
-  }
-  .qrcode-text{
-    margin: 0 auto;
-  }
-  .qt-yes{
-    @include size(2.34rem,1.07rem);
-  }
-  .qt-no{
-    @include size(2.34rem,1.5rem);
-  }
-  .minite-30{
-    @include size(2.1rem,0.24rem);
-    margin: 0.4rem auto 0;
-  }
-}
 .share-pop{
   .share-1{
-    float: right;
-    @include size(3.67rem,3.4rem);
-  }
-  .share-2{
-    clear: both;
-    @include size(4.38rem,0.78rem);
-    margin: 0 auto ;
-    position: relative;
-    top: -1.6rem;
-  }
-  .p3-3{
-    @include size(4.08rem,4.57rem);
-    margin: 0 auto;
-    position: relative;
-  }
-  .btn-close{
-    position: absolute;
-    left: 50%;
-    bottom: 1rem;
-    margin-left: -0.3rem;
+    margin: 1rem auto;
+    @include size(5.05rem,2.03rem);
+    padding-left: 1rem;
   }
 }
 
@@ -431,36 +295,18 @@ select:-webkit-autofill {
   top: 0;
   left: 0;
 }
-.tips-pop{
+
+.qrcode-pop{
   .inner{
     position: absolute;
-    @include size(3.96rem,1.71rem);
+    @include size(4rem,5rem);
     left: 50%;
     top: 50%;
     @include transform(translate(-50%,-50%));
   }
-  .tips-1{
-    @include size(4rem,0.75rem);
-    background: url("../images/tips.png") no-repeat;
-    background-size: 100%;
-  }
-  .btn-tips{
-    @include size(1.8rem,0.5rem);
-    float: left;
-    display: inline-block;
-    margin-left: 0.1rem;
-    background: url("../images/tips.png") no-repeat;
-    background-size: 200%;
-    background-position: 0% 100%;
-    &.btn-tips-no{
-      background-position: 100% 100%;
-    }
-  }
-  .tips-text{
-    @include size(1.91rem,0.29rem);
-    position: absolute;
-    left: 0.2rem;
-    bottom: 0.2rem;
+  .qrcode{
+    @include size(3.15rem,3.15rem);
+    margin: 0rem auto 0.5rem;
   }
 }
 
@@ -469,7 +315,7 @@ select:-webkit-autofill {
 .conversation-list{
   .avatar{
     position: absolute;
-    @include size(0.8rem,0.8rem);
+    @include size(10vw,10vw);
   }
   .words{
     position: relative;
@@ -478,6 +324,8 @@ select:-webkit-autofill {
     border: #d0d0d0 1px solid;
     background: #fff;
     @include vendor-prefix(border-radius,5px);
+    max-width: 60vw;
+    font-size: 0.3rem;
 
     &:after{
       content: '';
@@ -498,7 +346,7 @@ select:-webkit-autofill {
       top: 0;
     }
     .words{
-      margin-left: 1.2rem;
+      margin-left: 14vw;
       text-align: justify;
       &:after{
         left: -0.12rem;
@@ -518,7 +366,7 @@ select:-webkit-autofill {
       top: 0;
     }
     .words{
-      margin-right: 1.2rem;
+      margin-right: 14vw;
       text-align: justify;
       background: #a0e75a;
       border: #85d45e 1px solid;
@@ -564,6 +412,10 @@ select:-webkit-autofill {
   }
 }
 
+.btn-share{
+  color: #335ff1;
+  text-decoration: underline;
+}
 
 
 //test

@@ -13,7 +13,7 @@
             $('.loading-wrap').addClass('show');
             var baseurl = ''+'/app';
             var imagesArray = [
-                baseurl + '/images/logo.png',
+                baseurl + '/images/qrcode-share.png',
             ];
             var i = 0;
             new preLoader(imagesArray, {
@@ -23,91 +23,84 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    //Api.isFollow(function(data){
-                    //    console.log(data);
-                    //    if(!data.status){
-                    //        $('.qrcode-pop').removeClass('hide');
-                    //    }
-                    //});
                     Common.goHomepage();
-                    //Common.goWriteGreetingPage();
-                    //Common.goInfoPage();
+                    Api.isFollow(function(data){
+                        console.log(data);
+                        if(data.status==1){
+                        //    followed
 
-                    //	go gallery page
-                    $('.btn-gogallery').on('click',function(e){
-                        Common.goGallerypage();
+                        }else{
+                            $('.qrcode-follow-pop').removeClass('hide');
+                        }
                     });
 
+                    //input and click enter
                     $('#input-tocoach').keyup(function (e) {
                         //console.log('Key pressed: ' + e.keyCode);
                         if(e.keyCode=='13'){
                         //    enter keyboard
                             var inputMsg = $(this).val();
-                            var newMsgHtml = '<li class="item item-right">'+
-                                '<div class="avatar">'+
-                                '<img src="../app/images/loading-logo.png" alt=""/>'+
-                                '</div>'+
-                                '<div class="words">'+inputMsg+
-                            '</div>'+
-                            '</li>';
-                            $('.conversation-list').append(newMsgHtml);
+                            self.outputMsg(1,'/app/images/loading-logo.png',inputMsg);
+                            if(inputMsg=='520'){
+                                self.outputMsg(2,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
+                                self.outputMsg(3,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
+                                self.outputMsg(2,'/app/images/loading-logo.png','点击领取卡券，<span class="btn-share">分享</span>后更有机会领取520现金红包哦！');
+                            }else{
+                                self.outputMsg(2,'/app/images/loading-logo.png','爱的信号有误，COACH无法回应你的爱意哦！');
+                            }
+
                             $(this).val('');
                             $('.pin-inner').scrollTop($('.conversation-list').height());
-                            //inputMsg();
+
                         }
                     });
 
-                    //write your message
-                    $('.btn-filltext').on('click',function(){
-                        //ifplay,if not, go page pin-2,else go myphoto page
-                        Api.isLogin(function(data){
-                            console.log(data);
-                            if(data.status==1){
-                                 //    logged
-                                if(data.msg.background){
-                                    //Common.goMyPhotoPage();
-                                    //Common.goWriteGreetingPage();
-                                    //$('.photo-frame').attr('class','photo-frame photo photo'+data.msg.background);
-                                    //$('.textarea').value = data.msg.greeting;
-
-                                }else{
-                                    Common.goWriteGreetingPage();
-                                    self.radomGreetingBg();
-                                }
-                            }else{
-                                alert(data.msg);
-                            }
-
-                        });
+                    //click share link
+                    $('.wrapper').on('click','.btn-share', function(){
+                        $('.popup').addClass('hide');
+                        $('.share-pop').removeClass('hide');
                     });
 
-                    //submit your message
-                    $('.pin-2 .btn-submit').on('click', function(){
-                        self.generateGreeting();
+                    //test share success function
+                    $('.share-1').on('click',function(){
+                        self.showShareQrcode();
                     });
-
-                    $('.pin-2 .btn-back').on('click', function(){
-                        Common.goHomepage();
-                    });
-
-                    /*
-                    *  Get Key code
-                    * */
-                    self.SubmitKeycodeForm();
-                    self.radomGreetingBg();
-
-                    /*Submit the register information*/
-                    self.SubmitInformationForm();
-
-                    var labelRadio = $('.form-info .radio-inline');
-                        //select the radio
-                    labelRadio.on('click',function(){
-                        labelRadio.removeClass('actived');
-                        $(this).addClass('actived');
-                    });
-
                 }
             })
+        },
+        outputMsg:function(type,avatar,inputvalue){
+            /*
+            * the type is represent the message type,such as 1 is user message,2 is system message,3 is coupon
+            * inputvalue is the message
+            * */
+            var newMsgHtml='';
+            if(type==1){
+                newMsgHtml = '<li class="item item-right animate fade">'+
+                    '<div class="avatar">'+
+                    '<img src="'+avatar+'" alt=""/>'+
+                    '</div>'+
+                    '<div class="words">'+inputvalue+
+                    '</div>'+
+                    '</li>';
+
+            }else if(type==2){
+                newMsgHtml = '<li class="item item-left animate fade">'+
+                    '<div class="avatar">'+
+                    '<img src="'+avatar+'" alt=""/>'+
+                    '</div>'+
+                    '<div class="words">'+inputvalue+
+                    '</div>'+
+                    '</li>';
+            }else if(type==3){
+                newMsgHtml = '<li class="item item-left animate fade"><img src="/app/images/coupon.png" alt=""/>'+
+                    '</li>';
+            };
+            $('.conversation-list').append(newMsgHtml);
+            //return newMsgHtml;
+        },
+        showShareQrcode:function(){
+            $('.popup').addClass('hide');
+            $('.qrcode-share-pop').removeClass('hide');
         },
         radomGreetingBg:function(){
             var self = this;
