@@ -6,6 +6,24 @@ function gotoPin(i) {
 ;(function(){
 	var ua = navigator.userAgent.toLowerCase();
 	var Common = {
+		goHomepage:function(){
+			gotoPin(0);
+		},
+		goWriteGreetingPage:function(){
+			gotoPin(1);
+		},
+		goMyPhotoPage:function(){
+			gotoPin(5);
+		},
+		goGallerypage:function(){
+			window.location.href='gallery.html';
+		},
+		goMobilePage:function(){
+			gotoPin(2);
+		},
+		goInfoPage:function(){
+			gotoPin(3);
+		},
 		isWx:function(){
 			return (/micromessenger/.test(ua)) ? true:false;
 		},

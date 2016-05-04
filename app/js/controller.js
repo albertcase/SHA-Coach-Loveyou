@@ -11,41 +11,9 @@
             var self = this;
             //    loading first
             $('.loading-wrap').addClass('show');
-            var baseurl = '';
+            var baseurl = ''+'/app';
             var imagesArray = [
                 baseurl + '/images/logo.png',
-                baseurl + '/images/bg-1.png',
-                baseurl + '/images/btn-get.png',
-                baseurl + '/images/btn-getkeycode.png',
-                baseurl + '/images/btn-open.png',
-                baseurl + '/images/btn-share.png',
-                baseurl + '/images/btn-submit2.png',
-                baseurl + '/images/c-2.png',
-                baseurl + '/images/c-bg2.png',
-                baseurl + '/images/c-txt.png',
-                baseurl + '/images/coupon-bg.png',
-                baseurl + '/images/coupon-logo.png',
-                baseurl + '/images/input-border.png',
-                baseurl + '/images/logo.png',
-                baseurl + '/images/min-30.png',
-                baseurl + '/images/money-list.png',
-                baseurl + '/images/p2-bg.png',
-                baseurl + '/images/p2-logo.png',
-                baseurl + '/images/p2-pop-text.png',
-                baseurl + '/images/p2-private.png',
-                baseurl + '/images/p2-search.png',
-                baseurl + '/images/p3-3.png',
-                baseurl + '/images/p3-bg.png',
-                baseurl + '/images/p3-logo.png',
-                baseurl + '/images/p3-pop-text.png',
-                baseurl + '/images/qrcode.png',
-                baseurl + '/images/redpacket-no.png',
-                baseurl + '/images/redpacket-yes.png',
-                baseurl + '/images/redpacket.png',
-                baseurl + '/images/share-overlay.png',
-                baseurl + '/images/t1.png',
-                baseurl + '/images/tips-text.png',
-                baseurl + '/images/tips.png',
             ];
             var i = 0;
             new preLoader(imagesArray, {
@@ -53,70 +21,209 @@
 
                 },
                 onComplete: function(){
-                    //remove the loading and show the age tips
+                    //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    //init need know if user got the money
+                    //Api.isFollow(function(data){
+                    //    console.log(data);
+                    //    if(!data.status){
+                    //        $('.qrcode-pop').removeClass('hide');
+                    //    }
+                    //});
+                    Common.goHomepage();
+                    //Common.goWriteGreetingPage();
+                    //Common.goInfoPage();
 
-                    var LoadingStatus = $.ajax({
-                        type:'POST',
-                        url:'/api/status',
-                        dataType:'json',
-                        success:function(data){
+                    //	go gallery page
+                    $('.btn-gogallery').on('click',function(e){
+                        Common.goGallerypage();
+                    });
+
+                    $('#input-tocoach').keyup(function (e) {
+                        //console.log('Key pressed: ' + e.keyCode);
+                        if(e.keyCode=='13'){
+                        //    enter keyboard
+                            var inputMsg = $(this).val();
+                            var newMsgHtml = '<li class="item item-right">'+
+                                '<div class="avatar">'+
+                                '<img src="../app/images/loading-logo.png" alt=""/>'+
+                                '</div>'+
+                                '<div class="words">'+inputMsg+
+                            '</div>'+
+                            '</li>';
+                            $('.conversation-list').append(newMsgHtml);
+                            $(this).val('');
+                            $('.pin-inner').scrollTop($('.conversation-list').height());
+                            //inputMsg();
+                        }
+                    });
+
+                    //write your message
+                    $('.btn-filltext').on('click',function(){
+                        //ifplay,if not, go page pin-2,else go myphoto page
+                        Api.isLogin(function(data){
                             console.log(data);
-                            //status:1 已经领取红包
                             if(data.status==1){
-                            //    直接去红包页面
-                                if(data.msg==212){
-                                    $('.p3-t1 .t2').addClass('money2');
-                                }else if(data.msg==188){
-                                    $('.p3-t1 .t2').removeClass('money2');
+                                 //    logged
+                                if(data.msg.background){
+                                    //Common.goMyPhotoPage();
+                                    //Common.goWriteGreetingPage();
+                                    //$('.photo-frame').attr('class','photo-frame photo photo'+data.msg.background);
+                                    //$('.textarea').value = data.msg.greeting;
+
+                                }else{
+                                    Common.goWriteGreetingPage();
+                                    self.radomGreetingBg();
                                 }
-                                gotoPin(2);
-                                self.toMoneyPage();
                             }else{
-                                $('.tips-pop').removeClass('hide').addClass('fade animate');
+                                alert(data.msg);
                             }
-                        }
+
+                        });
                     });
 
-                    //for test
-                    //$('.tips-pop').removeClass('hide').addClass('fade animate');
-                    //gotoPin(2);
-                    //self.toMoneyPage();
-
-                    //	if your age is above 18
-                    $('.btn-tips').on('click',function(e){
-                        if($(this).hasClass('btn-tips-yes')){
-                            //	yes, go to page1
-                            $('.tips-pop').addClass('hide');
-                            gotoPin(0);
-                            _hmt.push(['_trackEvent', 'page', 'load', 'pv-1']);
-                        }else{
-                            //no,refresh the page
-                            window.location.reload();
-                        }
+                    //submit your message
+                    $('.pin-2 .btn-submit').on('click', function(){
+                        self.generateGreeting();
                     });
 
-                    //	open the redpacket
-                    $('.btn-open').on('click',function(){
-                        gotoPin(1);
-                        _hmt.push(['_trackEvent', 'buttons', 'click', 'btn-open']);
-                        _hmt.push(['_trackEvent', 'page', 'load', 'pv-2']);
-                        self.formValidate();
+                    $('.pin-2 .btn-back').on('click', function(){
+                        Common.goHomepage();
                     });
 
+                    /*
+                    *  Get Key code
+                    * */
+                    self.SubmitKeycodeForm();
+                    self.radomGreetingBg();
+
+                    /*Submit the register information*/
+                    self.SubmitInformationForm();
+
+                    var labelRadio = $('.form-info .radio-inline');
+                        //select the radio
+                    labelRadio.on('click',function(){
+                        labelRadio.removeClass('actived');
+                        $(this).addClass('actived');
+                    });
 
                 }
             })
         },
-        formValidate:function(){
+        radomGreetingBg:function(){
+            var self = this;
+            var bgName =  Math.round(Math.random() * (5 - 1) + 1);
+            $('.photo-frame').attr('class','photo-frame photo photo-'+bgName);
+        },
+        generateGreeting:function(){
+            /*
+            *  Input your words and then sent them to server
+            *  submit words and photo number
+            *  If submit success, show the share-pop
+            */
+            Common.msgBox('loading...');
+        //    edit here
+            $('.share-pop').removeClass('hide');
+
+        },
+        MobileValidate:function(){
+            var validate = true,
+                inputMobile = $('.form-validate .input-phone');
+            if(!inputMobile.val()){
+                Common.errorMsg.add(inputMobile.parent(),'手机号码不能为空');
+                validate = false;
+            }else{
+                var reg=/^1\d{10}$/;
+                if(!(reg.test(inputMobile.val()))){
+                    validate = false;
+                    Common.errorMsg.add(inputMobile.parent(),'手机号格式错误，请重新输入');
+                }else{
+                    Common.errorMsg.remove(inputMobile.parent());
+                }
+            }
+            if(validate){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        FormKeycodeValidate:function(){
+            var validate = true,
+            inputMobile = $('.form-validate .input-phone'),
+            inputKeyCode = $('.form-validate .input-keycode');
+            if(!inputMobile.val()){
+                Common.errorMsg.add(inputMobile.parent(),'手机号码不能为空');
+                validate = false;
+            }else{
+                var reg=/^1\d{10}$/;
+                if(!(reg.test(inputMobile.val()))){
+                    validate = false;
+                    Common.errorMsg.add(inputMobile.parent(),'手机号格式错误，请重新输入');
+                }else{
+                    Common.errorMsg.remove(inputMobile.parent());
+                }
+            }
+            //for keycode
+            if(!inputKeyCode.val()){
+                Common.errorMsg.add(inputKeyCode.parent(),'验证码不能为空');
+                validate = false;
+            }else{
+                Common.errorMsg.remove(inputKeyCode.parent());
+            }
+
+            if(validate){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        FormInforValidate:function(){
+            var validate = true,
+                inputSurname = $('.form-info .input-surname'),
+                inputName = $('.form-info .input-name'),
+                radioGender =$("input[type='radio'][name='gender']:checked"),
+                inputMobile = $('.form-info .input-mobile'),
+                inputEmailPrev = $('.form-info .input-email-pre'),
+                inputEmailAfter = $('.form-info .input-email-after');
+
+            //姓
+            if(!inputSurname.val()){
+                Common.errorMsg.add(inputSurname.parent(),'姓不能为空');
+                validate = false;
+            }else{
+                Common.errorMsg.remove(inputSurname.parent());
+            }
+            //名
+            if(!inputName.val()){
+                Common.errorMsg.add(inputName.parent(),'名不能为空');
+                validate = false;
+            }else{
+                Common.errorMsg.remove(inputName.parent());
+            }
+
+            //邮箱
+            if(!inputEmailPrev.val() || !inputEmailAfter.val()){
+                Common.errorMsg.add(inputEmailPrev.parent(),'邮箱不能为空');
+                validate = false;
+            }else{
+                Common.errorMsg.remove(inputEmailPrev.parent());
+            }
+
+            if(validate){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        SubmitKeycodeForm:function(){
             var self = this;
 
+            /*
+            *click get keycode button, validate mobile first and then connect api to sent user message
+            */
             $('.btn-getkeycode').on('click',function(e){
                 e.preventDefault();
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'sendmessage']);
                 if($('.countdown').length>0) return;
-                if(self.formMobile()){
+                if(self.MobileValidate()){
                     //    start to get keycode
                     console.log('validate phone number');
                     var mobile = $('.input-phone').val();
@@ -139,11 +246,13 @@
                     });
                 };
             });
+
+            /*
+             * Submit the Form, so we need FormKeycodeValidate first and then api
+             */
             var enableSubmit = true;
-            $('.pin-2 .btn-submit').on('click',function(){
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'Submit']);
-                //gotoPin(2);
-                if(self.formKeycode()){
+            $('.form-validate .form-btn-submit').on('click',function(){
+                if(self.FormKeycodeValidate()){
                     if(!enableSubmit) return;
                     enableSubmit = false;
                     //    start to get keycode
@@ -157,53 +266,33 @@
                         data:{mobile:phonenumber,code:keycode},
                         dataType:'json',
                         success:function(data){
-                            //status:1 success,get the money
-                            //2.红包领完
-                            //other：其他
                             enableSubmit = true;
                             $('.ajaxpop').remove();
-                            if(data.status==1){
-                                _hmt.push(['_trackEvent', 'buttons', 'click', 'PV-3']);
-                                //console.log('有红包,金额2.12或者1.88');
-                                if(data.msg==212){
-                                    $('.p3-t1 .t2').addClass('money2');
-                                }else if(data.msg==188){
-                                    $('.p3-t1 .t2').removeClass('money2');
-                                }
-                                gotoPin(2);
-                            }else if(data.status==6){
-                                //console.log('之前得到红包在半小时内未领取');
-                                _hmt.push(['_trackEvent', 'buttons', 'click', 'PV-3']);
-                                if(data.msg==212){
-                                    $('.p3-t1 .t2').addClass('money2');
-                                }else if(data.msg==188){
-                                    $('.p3-t1 .t2').removeClass('money2');
-                                }
-                                gotoPin(2);
-                            }else if(data.status==2){
-                                //console.log('红包领完了');
-                                _hmt.push(['_trackEvent', 'buttons', 'click', 'PV-3']);
-                                $('.pin-3').html('');
-                                $('.qrcode-pop').removeClass('hide');
-                                $('.qt-no').removeClass('hide');
-                                $('.qt-yes').addClass('hide');
-                                gotoPin(2);
-                            }else{
-                                alert(data.msg);
-                            }
+                            console.log('do something...');
                         }
                     });
                 };
             });
             //show the privacy pop
             $('.privacy-term').on('click',function(){
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'Terms']);
                 $('.term-pop').removeClass('hide').addClass('animate fade');
             });
 
         //    close the pop
             self.closePop();
             self.toMoneyPage();
+        },
+        SubmitInformationForm:function(){
+            /*
+            * Submit the register information form
+            * */
+            var self = this;
+            $('.form-info .form-btn-submit').on('click',function(){
+                if(self.FormInforValidate()){
+                    console.log('validate success');
+                }
+            });
+
         },
         countDown:function(){
             var countdownTime = 59;
@@ -228,65 +317,11 @@
             //    close the pop
             self.closePop();
             $('.btn-get').on('click', function(){
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'Redeem']);
-                _hmt.push(['_trackEvent', 'page', 'load', 'PV-4']);
                $('.qrcode-pop').removeClass('hide').addClass('animate fade');
             });
             $('.btn-share').on('click',function(){
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'Share']);
-                _hmt.push(['_trackEvent', 'page', 'load', 'PV-7']);
                 $('.share-pop').removeClass('hide').addClass('animate fade');
             });
-        },
-        formMobile:function(){
-            var validate = true;
-            if(!$('.input-phone').val()){
-                Common.errorMsg.add($('.input-phone').parent(),'手机号码不能为空');
-                validate = false;
-            }else{
-                var reg=/^1\d{10}$/;
-                if(!(reg.test($('.input-phone').val()))){
-                    validate = false;
-                    Common.errorMsg.add($('.input-phone').parent(),'手机号格式错误，请重新输入');
-                }else{
-                    Common.errorMsg.remove($('.input-phone').parent());
-                }
-
-            }
-
-            if(validate){
-                return true;
-            }else{
-                return false;
-            }
-        },
-        formKeycode:function(){
-            var validate = true;
-            if(!$('.input-phone').val()){
-                Common.errorMsg.add($('.input-phone').parent(),'手机号码不能为空');
-                validate = false;
-            }else{
-                var reg=/^1\d{10}$/;
-                if(!(reg.test($('.input-phone').val()))){
-                    validate = false;
-                    Common.errorMsg.add($('.input-phone').parent(),'手机号格式错误，请重新输入');
-                }else{
-                    Common.errorMsg.remove($('.input-phone').parent());
-                }
-            }
-            //for keycode
-            if(!$('.input-keycode').val()){
-                Common.errorMsg.add($('.input-keycode').parent(),'验证码不能为空');
-                validate = false;
-            }else{
-                Common.errorMsg.remove($('.input-keycode').parent());
-            }
-
-            if(validate){
-                return true;
-            }else{
-                return false;
-            }
         }
 
 
