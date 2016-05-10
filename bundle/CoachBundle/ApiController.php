@@ -10,15 +10,31 @@ class ApiController extends Controller {
 		
 	}
 
-	public function statusAction() {
+	public function isloginAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
 			return $this->statusPrint(0, '未登录');
 		}
-		$DatabaseAPI = new \Lib\DatabaseAPI();
-		$data = $DatabaseAPI->loadStatusAndMoneyByUid($user->uid);
-		return $this->statusPrint($data->status, $data->money);
+		return $this->statusPrint(1, $user);
+	}
+
+	public function statusAction() {
+		if (!isset($_SESSION['user'])) {
+			return $this->statusPrint(0, '未登录');
+		}
+		$UserAPI = new \Lib\UserAPI();
+		$user = $UserAPI->userLoad(true);
+		if (!$user) {
+			return $this->statusPrint(0, '未登录');
+		}
+		$wechatapi = new \Lib\WechatAPI();
+		//Eric 获取用户资料（关注） 微信js 
+		$rs = $wechatapi->isSubscribed($user->openid); 
+		if ($rs) {
+			return $this->statusPrint(1, '已关注');
+		}
+		return $this->statusPrint(2, '未关注');
 	}
 
 	public function checkAction() {
@@ -51,48 +67,28 @@ class ApiController extends Controller {
 		if (!$user) {
 			return $this->statusPrint(0, '未登录');
 		}
-
-		if (!isset($_SESSION['msg_code'])) {
-			return $this->statusPrint(3, '请先请求验证码');
-		}
+		$checkAry = array('520' => '100', '1314' => '200');
 		$request = $this->Request();
 		$fields = array(
-			'mobile' => array('mobile', '3'),
-			'code' => array('notnull', '3'),
+			'code' => array('notnull', '3')
 		);
 		$request->validation($fields);
-		$mobile = $request->request->get('mobile');
 		$code = $request->request->get('code');
-		if ($code != $_SESSION['msg_code']) {
-			return $this->statusPrint(4, '验证码不正确');
+		if (!array_key_exists($code, $checkAry)) {
+			return $this->statusPrint(4, '口令不正确');
 		}
-		//半小时重复提交
-		// if (($user->money !=0) && ($user->timeint!=0) && (NOWTIME - $user->timeint <1800)) {
-		// 	return $this->statusPrint(6, $user->money);
-		// }
-
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 
 		if ($DatabaseAPI->loadStatusByUid($user->uid) == 1) {
 			return $this->statusPrint(5, '您已经领过红包了');
 		}
-		unset($_SESSION['msg_time']);
-		unset($_SESSION['msg_code']);
 		$nowMoney = $DatabaseAPI->loadMoney(); 
 		if ($nowMoney >= TOTALMONEY) {
-			$DatabaseAPI->saveMoney($user->uid, $mobile, 0, NOWTIME);
+			$DatabaseAPI->saveMoney($user->uid, 0, NOWTIME);
 			return $this->statusPrint(2, '红包已经发完了');
 		}	
-		//可以领取
-		$rand = rand(1,2);
-		if ($rand == 1) {
-			//发1.88
-			$money = 188;		
-		} else {
-			//发2.12
-			$money = 212;
-		}
-		if ($DatabaseAPI->saveMoney($user->uid, $mobile, $money, NOWTIME)) {
+		$money = $checkAry[$code];		
+		if ($DatabaseAPI->saveMoney($user->uid, $money, NOWTIME)) {
 			$user->money = $money;
 			$user->timeint = NOWTIME;
 			return $this->statusPrint(1, $money);

@@ -11,7 +11,7 @@ class SmsAPI extends Base {
         //远程调用
         $uid = '众异市场';
         $pwd = 'samesame123';
-        $msg = "验证码" . $code . "，请在30分钟内填写，且勿向任何人提供您收到的短信校验码。【芝华士】";
+        $msg = "验证码" . $code . "，请在30分钟内填写，且勿向任何人提供您收到的短信校验码。【蔻驰】";
         $lindid = "Chivas" . date("YmdHis"). $code;
         $dtime = '';
         $char = 'utf-8';

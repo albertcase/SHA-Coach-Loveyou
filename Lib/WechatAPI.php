@@ -22,7 +22,7 @@ class WechatAPI {
   }
 
   public function getUserInfo($openid) {
-  	$info = file_get_contents("http://api.curio.im/v2/wx/users/" . $openid . "?access_token=" . CURIO_TOKEN);
+  	$info = file_get_contents("http://coach.samesamechina.com/v2/wx/users/" . $openid . "?access_token=" . CURIO_TOKEN);
     $rs = json_decode($info, true);
     return $rs;
   }
@@ -36,7 +36,7 @@ class WechatAPI {
   }
 
   public function cardList(){
-    $api_url = 'http://api.curio.im/v2/wx/card/js/add/json?access_token='. CURIO_TOKEN;
+    $api_url = 'http://coach.samesamechina.com/v2/wx/card/js/add/json?access_token='. CURIO_TOKEN;
     // 参数数组
     $data[] = array(
             'card_id' => 'pKCDxjlrh6tQ8sEDiZl9eAmKcXqA',

@@ -26,7 +26,7 @@ class DatabaseAPI extends Base {
 		if ($user) {
 			return $user;
 		}
-		$sql = "INSERT INTO `chivas_info` SET `openid` = ?";
+		$sql = "INSERT INTO `coach_info` SET `openid` = ?";
 		$res = $this->db->prepare($sql); 
 		$res->bind_param("s", $openid);
 		if ($res->execute()) {
@@ -40,7 +40,7 @@ class DatabaseAPI extends Base {
 		if ($this->findUserByOauth($openid)) {
 			return TRUE;
 		}
-		$sql = "INSERT INTO `chivas_oauth` SET `openid` = ?, nickname = ?, headimgurl = ?";
+		$sql = "INSERT INTO `coach_oauth` SET `openid` = ?, nickname = ?, headimgurl = ?";
 		$res = $this->db->prepare($sql); 
 		$res->bind_param("sss", $openid, $nickname, $headimgurl);
 		if ($res->execute()) {
@@ -51,7 +51,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function findUserByOauth($openid) {
-		$sql = "SELECT id  FROM `chivas_oauth` WHERE `openid` = ?"; 
+		$sql = "SELECT id  FROM `coach_oauth` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
@@ -66,7 +66,7 @@ class DatabaseAPI extends Base {
 		if (isset($_SESSION['user'])) {
 			return $_SESSION['user'];
 		}
-		$sql = "SELECT `id`, `openid`, `mobile`, `money`, `timeint` FROM `chivas_info` WHERE `openid` = ?"; 
+		$sql = "SELECT `id`, `openid`, `mobile`, `money`, `timeint` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
@@ -85,7 +85,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function saveSmsLog($uid, $mobile, $code, $lindid, $msg, $send_rs) {
-		$sql = "INSERT INTO `chivas_mobile` SET `uid` = ?, `mobile` = ?, code = ?, lindid = ?, msg = ?, send_rs = ?";
+		$sql = "INSERT INTO `coach_mobile` SET `uid` = ?, `mobile` = ?, code = ?, lindid = ?, msg = ?, send_rs = ?";
 		$res = $this->db->prepare($sql); 
 		$res->bind_param("ssssss", $uid, $mobile, $code, $lindid, $msg, $send_rs);
 		if ($res->execute()) {
@@ -96,7 +96,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function saveScan($data, $type) {
-		$sql = "INSERT INTO `chivas_scan` SET `result` = ?, `type` = ?";
+		$sql = "INSERT INTO `coach_scan` SET `result` = ?, `type` = ?";
 		$res = $this->db->prepare($sql); 
 		$res->bind_param("ss", $data, $type);
 		if ($res->execute()) {
@@ -107,7 +107,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function loadMoney() {
-		$sql = "SELECT sum(`money`) FROM `chivas_info`"; 
+		$sql = "SELECT sum(`money`) FROM `coach_info`"; 
 		$res = $this->db->prepare($sql);
 		$res->execute();
 		$res->bind_result($num);
@@ -117,8 +117,8 @@ class DatabaseAPI extends Base {
 		return 0;
 	}
 
-	public function saveMoney($uid, $mobile, $money, $timeint) {
-		$sql = "UPDATE `chivas_info` SET `mobile` = ?, `money` = ?, `timeint` = ? WHERE `id` = ?";
+	public function saveMoney($uid, $money, $timeint) {
+		$sql = "UPDATE `coach_info` SET `money` = ?, `timeint` = ? WHERE `id` = ?";
 		$res = $this->db->prepare($sql); 
 		$res->bind_param("ssss", $mobile, $money, $timeint, $uid);
 		if ($res->execute()) {
@@ -129,7 +129,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function loadStatusByUid($uid) {
-		$sql = "SELECT status  FROM `chivas_info` WHERE `id` = ?"; 
+		$sql = "SELECT status  FROM `coach_info` WHERE `id` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $uid);
 		$res->execute();
@@ -141,7 +141,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function loadStatusAndMoneyByUid($uid) {
-		$sql = "SELECT status,money  FROM `chivas_info` WHERE `id` = ?"; 
+		$sql = "SELECT status,money  FROM `coach_info` WHERE `id` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $uid);
 		$res->execute();
@@ -156,7 +156,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function updateStatusByUid($uid) {
-		$sql = "UPDATE `chivas_info` SET status=1 WHERE `id` = ?"; 
+		$sql = "UPDATE `coach_info` SET status=1 WHERE `id` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $uid);
 		if ($res->execute()) {
@@ -171,7 +171,7 @@ class DatabaseAPI extends Base {
 		$msg = $postObj->result_code;
 		if ($msg != 'SUCCESS')
 			$msg = $postObj->err_code;
-		$sql = "INSERT INTO `chivas_redpacket_log` SET `uid` = ?, `openid` = ?, `money` = ?, `orderid` = ?, `result` = ?, `msg` = ?";
+		$sql = "INSERT INTO `coach_redpacket_log` SET `uid` = ?, `openid` = ?, `money` = ?, `orderid` = ?, `result` = ?, `msg` = ?";
 		$res = $this->db->prepare($sql); 
 
 		$res->bind_param("ssssss", $uid, $openid, $money, $orderid, $result, $msg);
@@ -184,7 +184,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function findUserForWechat($openid) {
-		$sql = "SELECT `id`, `openid`, `mobile`, `money`, `timeint`, `status` FROM `chivas_info` WHERE `openid` = ?"; 
+		$sql = "SELECT `id`, `openid`, `mobile`, `money`, `timeint`, `status` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
@@ -203,7 +203,7 @@ class DatabaseAPI extends Base {
 	}
 
 	public function findLog($openid) {
-		$sql = "SELECT id FROM `chivas_redpacket_log` WHERE `openid` = ? and `msg` = 'SUCCESS'"; 
+		$sql = "SELECT id FROM `coach_redpacket_log` WHERE `openid` = ? and `msg` = 'SUCCESS'"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
