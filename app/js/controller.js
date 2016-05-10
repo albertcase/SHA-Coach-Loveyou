@@ -35,20 +35,13 @@
                     });
 
                     //input and click enter
-                    $('#input-tocoach').keyup(function (e) {
-                        //console.log('Key pressed: ' + e.keyCode);
+                    $('#input-tocoach').keypress(function (e) {
+
                         if(e.keyCode=='13'){
                         //    enter keyboard
                             var inputMsg = $(this).val();
                             self.outputMsg(1,'/app/images/loading-logo.png',inputMsg);
-                            if(inputMsg=='520'){
-                                self.outputMsg(2,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
-                                self.outputMsg(3,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
-                                self.outputMsg(2,'/app/images/loading-logo.png','点击领取卡券，<span class="btn-share">分享</span>后更有机会领取520现金红包哦！');
-                            }else{
-                                self.outputMsg(2,'/app/images/loading-logo.png','爱的信号有误，COACH无法回应你的爱意哦！');
-                            }
-
+                            self.compareCommand(inputMsg);
                             $(this).val('');
                             $('.pin-inner').scrollTop($('.conversation-list').height());
 
@@ -67,6 +60,28 @@
                     });
                 }
             })
+        },
+        compareCommand:function(commandline){
+            /*
+            * If the input command is right, then upload the command to server.
+            * Show different message according input command.
+            * The commandline is input value
+            * */
+            var self = this;
+            //prejudication
+            var rightCommand = ['520','1314','1234'];
+            for(var i=0;i<rightCommand.length;i++){
+                if(commandline==rightCommand[i]){
+                    self.outputMsg(2,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
+                    self.outputMsg(3,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
+                    self.outputMsg(2,'/app/images/loading-logo.png','点击领取卡券，<span class="btn-share">分享</span>后更有机会领取520现金红包哦！');
+                    return;
+                }else{
+                    if(i==rightCommand.length-1){
+                        self.outputMsg(2,'/app/images/loading-logo.png','爱的信号有误，COACH无法回应你的爱意哦！');
+                    }
+                }
+            }
         },
         outputMsg:function(type,avatar,inputvalue){
             /*
@@ -96,7 +111,7 @@
                     '</li>';
             };
             $('.conversation-list').append(newMsgHtml);
-            //return newMsgHtml;
+
         },
         showShareQrcode:function(){
             $('.popup').addClass('hide');
