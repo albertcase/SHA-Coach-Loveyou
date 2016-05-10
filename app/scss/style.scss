@@ -297,6 +297,7 @@ body{
 }
 
 .qrcode-pop{
+  background: rgba(255,255,255,0.9);
   .inner{
     position: absolute;
     @include size(4rem,5rem);

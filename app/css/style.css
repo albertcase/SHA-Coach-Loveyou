@@ -470,6 +470,9 @@ body {
   left: 0;
 }
 
+.qrcode-pop {
+  background: rgba(255, 255, 255, 0.9);
+}
 .qrcode-pop .inner {
   position: absolute;
   width: 4rem;

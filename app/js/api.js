@@ -28,6 +28,16 @@ Api = {
             }
         });
     },
+    ifShared:function(){
+        $.ajax({
+            url:'/api/share',
+            type:'POST',
+            dataType:'json',
+            success:function(){
+
+            }
+        });
+    },
     // greeting  background
     writeGreeting:function(obj,callback){
         $.ajax({
