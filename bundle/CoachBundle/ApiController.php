@@ -10,6 +10,28 @@ class ApiController extends Controller {
 		
 	}
 
+	public function callbackAction() {
+		$request = $this->Request();
+		$fields = array(
+			'openid' => array('notnull', '3')
+		);
+		$request->validation($fields);
+		$openid = $request->query->get('openid');
+		$userapi = new \Lib\UserAPI();
+		$userapi->userLogin($openid);
+		$url = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : "/";
+		$this->redirect($url);
+		exit;
+	}
+
+	public function getdataAction() {
+		$data = $GLOBALS['HTTP_RAW_POST_DATA'];	
+		$data = json_decode($data, true);
+		$databaseapi = new \Lib\DatabaseAPI();
+		$databaseapi->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+		exit;
+	}
+
 	public function isloginAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
