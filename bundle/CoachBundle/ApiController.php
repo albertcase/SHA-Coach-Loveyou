@@ -138,4 +138,10 @@ class ApiController extends Controller {
 		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
 		
 	}
+
+	public function cardAction() {
+		$wechatapi = new \Lib\WechatAPI();
+		$list = $wechatapi->cardList();
+		return $this->statusPrint(1, $list);
+	}
 }
