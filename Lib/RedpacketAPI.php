@@ -15,13 +15,16 @@ class RedpacketAPI extends Base {
             return false;
         }
         if ($user->status == 1) {
+            $RedisAPI->unlock($openid);
             return false;
         }
         if ($user->money == 0) {
+            $RedisAPI->unlock($openid);
             return false;
         }
         $log = $DatabaseAPI->findLog($openid);
         if ($log) {
+            $RedisAPI->unlock($openid);
             return false;
         }
 
