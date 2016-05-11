@@ -8,7 +8,9 @@ class ApiController extends Controller {
 
 	public function testAction() {
 		$userapi = new \Lib\RedpacketAPI();
-		var_dump($userapi->sendredpack('oKCDxjivJ92ky4dxLT8dt1jcXtn4'));
+		//var_dump($userapi->sendredpack('oKCDxjivJ92ky4dxLT8dt1jcXtn4'));
+		var_dump($userapi->sendredpack('oKCDxjoxhlcJnOl6-xOTNZRTEo9s'));
+		
 		exit;
 		
 	}
