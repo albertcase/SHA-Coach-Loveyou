@@ -1,7 +1,7 @@
 <?php
 
 //Redis config info
-define("REDIS_HOST", '127.0.0.1');
+define("REDIS_HOST", '10.10.14.138');
 define("REDIS_PORT", '6379');
 
 define("BASE_URL", 'http://coach-520.samesamechina.com/');
