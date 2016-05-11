@@ -41,7 +41,7 @@ class ApiController extends Controller {
 		//exit;	
 		//$data = $GLOBALS['HTTP_RAW_POST_DATA'];
 		$data = 123;
-		$postObj = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
+		//$postObj = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
 		//if ($postObj->EventKey == 'qrscene_194' || $postObj->EventKey == '194') {
 			$DatabaseAPI = new \Lib\DatabaseAPI();
 			$DatabaseAPI->saveScan($data);
