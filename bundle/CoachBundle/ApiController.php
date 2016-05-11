@@ -7,6 +7,9 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
+		$userapi = new \Lib\RedpacketAPI();
+		var_dump($userapi->sendredpack($openid));
+		exit;
 		
 	}
 
