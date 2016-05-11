@@ -66,17 +66,16 @@ class DatabaseAPI extends Base {
 		if (isset($_SESSION['user'])) {
 			return $_SESSION['user'];
 		}
-		$sql = "SELECT `id`, `openid`, `money`, `timeint` FROM `coach_info` WHERE `openid` = ?"; 
+		$sql = "SELECT `id`, `openid`, `money` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid, $money, $timeint);
+		$res->bind_result($uid, $openid, $money);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
 			$user->openid = $openid;
 			$user->money = $money;
-			$user->timeint = $timeint;
 			$_SESSION['user'] = $user;
 			return $user;
 		}

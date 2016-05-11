@@ -19,10 +19,10 @@ define("CURIO_TOKEN", 'd93fb4bd3400244ece3145637c85622a');
 define("CURIO_JS_ID", '8309bc61-3c78-41d5-a1be-2f9e9ca01e95');
 
 //Database config info
-define("DBHOST", '127.0.0.1');
+define("DBHOST", '10.10.59.131');
 define("DBUSER", 'root');
-define("DBPASS", '');
-define("DBNAME", 'coach_520');
+define("DBPASS", 'as23r234sdafsa');
+define("DBNAME", 'coach_loveyou');
 
 
 
