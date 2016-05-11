@@ -82,7 +82,7 @@ class RedpacketAPI extends Base {
         return $noncestr;
     }
 
-    private function sign($data, $key = 'e3cd885ce0ce2cbefba8d02070c22448') {
+    private function sign($data, $key = 'd93fb4bd3400244ece3145637c85622a') {
         ksort($data);
         $str = urldecode(http_build_query($data)) . '&key=' . $key;
         return strtoupper(md5($str)); 
