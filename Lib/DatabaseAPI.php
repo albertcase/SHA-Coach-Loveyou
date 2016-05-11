@@ -194,18 +194,16 @@ class DatabaseAPI extends Base {
 	}
 
 	public function findUserForWechat($openid) {
-		$sql = "SELECT `id`, `openid`, `mobile`, `money`, `timeint`, `status` FROM `coach_info` WHERE `openid` = ?"; 
+		$sql = "SELECT `id`, `openid`,  `money`, `status` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid, $mobile, $money, $timeint, $status);
+		$res->bind_result($uid, $openid, $money, $status);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
 			$user->openid = $openid;
-			$user->mobile = $mobile;
 			$user->money = $money;
-			$user->timeint = $timeint;
 			$user->status = $status;
 			return $user;
 		}
