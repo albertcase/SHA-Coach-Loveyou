@@ -32,6 +32,21 @@ class ApiController extends Controller {
 		exit;
 	}
 
+	public function qrcodeAction() {
+		//exit;	
+		$data = $GLOBALS['HTTP_RAW_POST_DATA'];
+		$postObj = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
+		if ($postObj->EventKey == 'qrscene_194' || $postObj->EventKey == '194') {
+			$DatabaseAPI = new \Lib\DatabaseAPI();
+			$DatabaseAPI->saveScan($data);
+			
+			$openid = $postObj->FromUserName;
+			$redpacket = new \Lib\RedpacketAPI();
+			$redpacket->sendredpack($openid);
+		}
+		exit;
+	}
+
 	public function isloginAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);

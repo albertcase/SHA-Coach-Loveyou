@@ -66,22 +66,33 @@ class DatabaseAPI extends Base {
 		if (isset($_SESSION['user'])) {
 			return $_SESSION['user'];
 		}
-		$sql = "SELECT `id`, `openid`, `mobile`, `money`, `timeint` FROM `coach_info` WHERE `openid` = ?"; 
+		$sql = "SELECT `id`, `openid`, `money`, `timeint` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid, $mobile, $money, $timeint);
+		$res->bind_result($uid, $openid, $money, $timeint);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
 			$user->openid = $openid;
-			$user->mobile = $mobile;
 			$user->money = $money;
 			$user->timeint = $timeint;
 			$_SESSION['user'] = $user;
 			return $user;
 		}
 		return NULL;
+	}
+
+	public function getHeadimgurlByOpenid($openid) {
+		$sql = "SELECT headimgurl  FROM `coach_oauth` WHERE `openid` = ?"; 
+		$res = $this->db->prepare($sql);
+		$res->bind_param("s", $openid);
+		$res->execute();
+		$res->bind_result($headimgurl);
+		if($res->fetch()) {
+			return $headimgurl;
+		}
+		return '';
 	}
 
 	public function saveSmsLog($uid, $mobile, $code, $lindid, $msg, $send_rs) {
@@ -95,10 +106,10 @@ class DatabaseAPI extends Base {
 		}
 	}
 
-	public function saveScan($data, $type) {
-		$sql = "INSERT INTO `coach_scan` SET `result` = ?, `type` = ?";
+	public function saveScan($data) {
+		$sql = "INSERT INTO `coach_scan` SET `result` = ?";
 		$res = $this->db->prepare($sql); 
-		$res->bind_param("ss", $data, $type);
+		$res->bind_param("s", $data);
 		if ($res->execute()) {
 			return TRUE;
 		} else {
