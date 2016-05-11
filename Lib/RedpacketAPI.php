@@ -35,9 +35,9 @@ class RedpacketAPI extends Base {
             're_openid' => $user->openid,
             'total_amount' => $user->money,
             'total_num' => '1',
-            'wishing' => '芝华士祝您大吉大利',
-            'client_ip' => '123.59.150.53',
-            'act_name' => '芝华士红包',
+            'wishing' => 'Coach祝您大吉大利',
+            'client_ip' => '120.132.93.148',
+            'act_name' => 'Coach蔻驰',
             'remark' => '恭喜发财大吉大利',
         );
         $data['sign'] = $this->sign($data);
