@@ -39,17 +39,17 @@ class ApiController extends Controller {
 
 	public function qrcodeAction() {
 		//exit;	
-		//$data = $GLOBALS['HTTP_RAW_POST_DATA'];
-		$data = 123;
-		//$postObj = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
-		//if ($postObj->EventKey == 'qrscene_194' || $postObj->EventKey == '194') {
+		$data = $GLOBALS['HTTP_RAW_POST_DATA'];
+		//$data = 123;
+		$postObj = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
+		if ($postObj->EventKey == 'qrscene_194' || $postObj->EventKey == '194') {
 			$DatabaseAPI = new \Lib\DatabaseAPI();
 			$DatabaseAPI->saveScan($data);
 			
 			// $openid = $postObj->FromUserName;
 			// $redpacket = new \Lib\RedpacketAPI();
 			// $redpacket->sendredpack($openid);
-		//}
+		}
 		exit;
 	}
 
