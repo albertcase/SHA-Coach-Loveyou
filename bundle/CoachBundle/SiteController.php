@@ -24,8 +24,7 @@ class SiteController extends Controller {
 			$user->headimgurl = $databaseapi->getHeadimgurlByOpenid($user->openid);
 			$_SESSION['user'] = $user;
 		}
-		echo '<img src="'.$user->headimgurl.'">';
-		$this->render('test');
+		$this->render('index', array('headimgurl' => $user->headimgurl));
 		exit;
 	}
 
