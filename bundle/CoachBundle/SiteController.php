@@ -24,8 +24,15 @@ class SiteController extends Controller {
 			$user->headimgurl = $databaseapi->getHeadimgurlByOpenid($user->openid);
 			$_SESSION['user'] = $user;
 		}
-		$this->render('index', array('headimgurl' => $user->headimgurl));
+		$wechatapi = new \Lib\WechatAPI();
+		$rs = $wechatapi->isSubscribed($user->openid); 
+		if ($rs) {
+			$this->render('index', array('headimgurl' => $user->headimgurl));
+			exit;
+		}
+		$this->render('qrcode');
 		exit;
+		
 	}
 
 }
