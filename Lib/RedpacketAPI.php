@@ -38,10 +38,10 @@ class RedpacketAPI extends Base {
             're_openid' => $user->openid,
             'total_amount' => $user->money,
             'total_num' => '1',
-            'wishing' => 'Coach祝您大吉大利',
+            'wishing' => '已收获你的满满爱意',
             'client_ip' => '120.132.93.148',
-            'act_name' => 'Coach蔻驰',
-            'remark' => '恭喜发财大吉大利',
+            'act_name' => 'Coach520告白',
+            'remark' => 'Coach520告白红包立刻抢！',
         );
         $data['sign'] = $this->sign($data);
         $postData = '<xml>

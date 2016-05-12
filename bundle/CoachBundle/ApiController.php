@@ -104,36 +104,28 @@ class ApiController extends Controller {
 	}
 
 
-	public function submitAction() {
+	public function shareAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
 			return $this->statusPrint(0, '未登录');
 		}
-		$checkAry = array('520' => '100', '1314' => '200');
-		$request = $this->Request();
-		$fields = array(
-			'code' => array('notnull', '3')
-		);
-		$request->validation($fields);
-		$code = $request->request->get('code');
-		if (!array_key_exists($code, $checkAry)) {
-			return $this->statusPrint(4, '口令不正确');
+		if ($user->money != 0) {
+			return $this->statusPrint(4, '已经领过');
 		}
 		$DatabaseAPI = new \Lib\DatabaseAPI();
-
-		if ($DatabaseAPI->loadStatusByUid($user->uid) == 1) {
-			return $this->statusPrint(5, '您已经领过红包了');
-		}
 		$nowMoney = $DatabaseAPI->loadMoney(); 
 		if ($nowMoney >= TOTALMONEY) {
-			$DatabaseAPI->saveMoney($user->uid, 0, NOWTIME);
 			return $this->statusPrint(2, '红包已经发完了');
 		}	
-		$money = $checkAry[$code];		
+		$rand = mt_rand(1,69900);	
+		if ($rand <= 500) {
+			$money = 520;
+		} else {
+			$money = 100;
+		}
 		if ($DatabaseAPI->saveMoney($user->uid, $money, NOWTIME)) {
 			$user->money = $money;
-			$user->timeint = NOWTIME;
 			return $this->statusPrint(1, $money);
 		}
 		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
