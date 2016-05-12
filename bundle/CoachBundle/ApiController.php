@@ -46,9 +46,9 @@ class ApiController extends Controller {
 			$DatabaseAPI = new \Lib\DatabaseAPI();
 			$DatabaseAPI->saveScan($data);
 			
-			// $openid = $postObj->FromUserName;
-			// $redpacket = new \Lib\RedpacketAPI();
-			// $redpacket->sendredpack($openid);
+			$openid = $postObj->FromUserName;
+			$redpacket = new \Lib\RedpacketAPI();
+			$redpacket->sendredpack($openid);
 		}
 		exit;
 	}
