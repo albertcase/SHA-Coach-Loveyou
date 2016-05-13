@@ -26,6 +26,7 @@ class SiteController extends Controller {
 		}
 		$wechatapi = new \Lib\WechatAPI();
 		$rs = $wechatapi->isSubscribed($user->openid); 
+		var_dump($rs);exit;
 		if ($rs) {
 			$this->render('index', array('headimgurl' => $user->headimgurl));
 			exit;
