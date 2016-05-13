@@ -14,8 +14,8 @@ var path = {
     template:['./app/template/index.html'],
     css:['./app/css/*.css'],
     js:['./app/js/*.js','!app/js/widget.js'],
-    index_include_js:['/app/js/lib/zepto.min.js','/app/js/lib/pre-loader.js','/app/js/rem.js','/app/js/api.js','/app/js/common.js','/app/js/controller.js','/app/js/weixinshare.js'],
-    qrcode_include_js:['/app/js/lib/zepto.min.js','/app/js/rem.js','/app/js/api.js','/app/js/common.js','/app/js/weixinshare.js','/app/js/qrcode.js']
+    index_include_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js','./app/js/weixinshare.js'],
+    qrcode_include_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/weixinshare.js','./app/js/qrcode.js']
 };
 
 // Browser-sync
@@ -54,7 +54,7 @@ gulp.task('indexjs', function () {
 //concat and uglify homejs
 gulp.task('qrcodejs', function () {
     // 1. 找到文件
-    gulp.src(path.home_incluede_js)
+    gulp.src(path.qrcode_include_js)
         .pipe(concat('widget_qrcode.js'))
         // 2. 压缩文件
         .pipe(uglify())
