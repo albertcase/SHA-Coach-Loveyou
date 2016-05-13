@@ -29,7 +29,7 @@ class WechatAPI {
 
   public function isSubscribed($openid) {
     $info = $this->getUserInfo($openid);
-    if(isset($info['data']['subscribe']) && $info['data']['subscribe'] == 1)
+    if(isset($info['subscribe']) && $info['subscribe'] == 1)
       return TRUE;
     else
       return FALSE;
