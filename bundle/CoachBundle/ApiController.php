@@ -124,7 +124,7 @@ class ApiController extends Controller {
 		} else {
 			$money = 100;
 		}
-		if ($DatabaseAPI->saveMoney($user->uid, $money, NOWTIME)) {
+		if ($DatabaseAPI->saveMoney($user->uid, $money)) {
 			$user->money = $money;
 			return $this->statusPrint(1, $money);
 		}
