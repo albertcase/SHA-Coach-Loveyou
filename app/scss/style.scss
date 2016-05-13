@@ -90,7 +90,8 @@ img{
   position: relative;
   @include size(0.6rem,0.6rem);
   margin: 0rem auto 0rem;
-  left: -0.1rem;
+  right: 0.1rem;
+  top: 0.4rem;
   &:after{
     content: '';
     display: block;
@@ -119,6 +120,7 @@ img{
 body{
   font:0.24rem/1.5 sans-serif;
   color: #000;
+  background: #ebebeb;
 }
 
 //for loading
@@ -197,7 +199,7 @@ body{
 
 //for pin
 .pin {
-  //display: none;
+  display: none;
   opacity: 0;
   z-index: 1;
   width: 100%;
@@ -211,7 +213,7 @@ body{
   animation-duration: 600ms;
   -webkit-animation-duration: 600ms;
   &.current{
-    //display: block;
+    display: block;
     opacity: 1;
     z-index: 100;
   }
@@ -300,7 +302,7 @@ body{
   background: rgba(255,255,255,0.9);
   .inner{
     position: absolute;
-    @include size(4rem,5rem);
+    @include size(4rem,auto);
     left: 50%;
     top: 50%;
     @include transform(translate(-50%,-50%));
@@ -308,6 +310,10 @@ body{
   .qrcode{
     @include size(3.15rem,3.15rem);
     margin: 0rem auto 0.5rem;
+  }
+  .link-terms{
+    @include size(1.48rem,0.36rem);
+    margin: 0.6rem auto 0;
   }
 }
 
@@ -387,7 +393,6 @@ body{
 
 //for pin-1
 .pin-1{
-  background: #ebebeb;
   .pin-inner{
     padding: 0.2rem;
     height: 90vh;

@@ -9,24 +9,6 @@ function gotoPin(i) {
 		goHomepage:function(){
 			gotoPin(0);
 		},
-		goWriteGreetingPage:function(){
-			gotoPin(1);
-		},
-		goMyPhotoPage:function(){
-			gotoPin(5);
-		},
-		goGallerypage:function(){
-			window.location.href='gallery.html';
-		},
-		goMobilePage:function(){
-			gotoPin(2);
-		},
-		goInfoPage:function(){
-			gotoPin(3);
-		},
-		isWx:function(){
-			return (/micromessenger/.test(ua)) ? true:false;
-		},
 		msgBox:function(msg,long){
 			if(long){
 				$('body').append('<div class="ajaxpop msgbox minwidthbox"><div class="loading">'+msg+'</div></div>');
