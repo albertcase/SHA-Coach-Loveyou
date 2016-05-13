@@ -127,10 +127,10 @@ class DatabaseAPI extends Base {
 		return 0;
 	}
 
-	public function saveMoney($uid, $money, $timeint) {
-		$sql = "UPDATE `coach_info` SET `money` = ?, `timeint` = ? WHERE `id` = ?";
+	public function saveMoney($uid, $money) {
+		$sql = "UPDATE `coach_info` SET `money` = ? WHERE `id` = ?";
 		$res = $this->db->prepare($sql); 
-		$res->bind_param("ssss", $mobile, $money, $timeint, $uid);
+		$res->bind_param("ss", $money, $uid);
 		if ($res->execute()) {
 			return TRUE;
 		} else {

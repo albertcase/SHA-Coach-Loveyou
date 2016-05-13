@@ -115,7 +115,7 @@ class ApiController extends Controller {
 		}
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$nowMoney = $DatabaseAPI->loadMoney(); 
-		if ($nowMoney >= TOTALMONEY) {
+		if ($nowMoney >= 7200000) {
 			return $this->statusPrint(2, '红包已经发完了');
 		}	
 		$rand = mt_rand(1,69900);	
