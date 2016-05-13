@@ -23,13 +23,13 @@ Api = {
             }
         });
     },
-    ifShared:function(){
+    ifShared:function(callback){
         $.ajax({
             url:'/api/share',
             type:'POST',
             dataType:'json',
-            success:function(){
-
+            success:function(data){
+                return callback(data);
             }
         });
     },

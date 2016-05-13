@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="/app/css/style.css">
     <!-- endinject -->
 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?080784413d09690b9322651e98a08f48";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
     <!--<script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>-->
     <script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>
 
@@ -60,7 +70,7 @@
                         <img src="/app/images/coach-avatar.png" alt=""/>
                     </div>
                     <div class="words">
-                        只要现在向COACH表白，就会收到爱的大礼物哦
+                        只要现在向COACH发送数字表白，就会收到爱的大礼物哦
                     </div>
                 </li>
             </ul>

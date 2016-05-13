@@ -22,7 +22,7 @@
                 baseurl + '/images/qrcode-follow.png',
                 baseurl + '/images/qrcode-share-text.png',
                 baseurl + '/images/qrcode-share.png',
-                baseurl + '/images/share-guide.png',
+                baseurl + '/images/share-guide.png'
             ];
             var i = 0;
             new preLoader(imagesArray, {
@@ -133,7 +133,6 @@
         },
         showShareQrcode:function(){
             //just visit the api
-            Api.ifShared();
             //override share
             wx.ready(function() {
                 wx.onMenuShareTimeline({
@@ -142,8 +141,27 @@
                     imgUrl: window.location.origin+'/app/images/share-guide.png',
                     success: function () {
                         //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToMoments']);
-                        $('.popup').addClass('hide');
-                        $('.qrcode-share-pop').removeClass('hide');
+
+                        Api.ifShared(function(data){
+                            if(data.status==1){
+                                //    未领取红包，去扫一扫二维码
+                                $('.popup').addClass('hide');
+                                $('.qrcode-share-pop').removeClass('hide');
+
+                            }else if(data.status==2){
+                                //红包发完
+                                alert('红包发完');
+
+                            }else if(data.status==4){
+                                //红包已经领过
+                                alert('红包已经领过');
+
+                            }else{
+                                //
+                                //    alert(data.msg);
+                            }
+
+                        });
                     },
                     cancel: function () {
                     }
