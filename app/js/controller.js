@@ -40,7 +40,7 @@
                         if(e.keyCode=='13'){
                         //    enter keyboard
                             var inputMsg = $(this).val();
-                            self.outputMsg(1,'/app/images/loading-logo.png',inputMsg);
+                            self.outputMsg(1,headimgurl,inputMsg);
                             self.compareCommand(inputMsg);
                             $(this).val('');
                             $('.pin-inner').scrollTop($('.conversation-list').height());
@@ -52,12 +52,20 @@
                     $('.wrapper').on('click','.btn-share', function(){
                         $('.popup').addClass('hide');
                         $('.share-pop').removeClass('hide');
+                        self.showShareQrcode();
                     });
 
                     //test share success function
                     $('.share-1').on('click',function(){
                         self.showShareQrcode();
                     });
+
+                    //coupon page
+                    $('.wrapper').on('click','.item-coupon',function(){
+                        self.addCouppon(0);
+                    });
+
+                    self.closePop();
                 }
             })
         },
@@ -69,16 +77,17 @@
             * */
             var self = this;
             //prejudication
-            var rightCommand = ['520','1314','1234'];
+            var rightCommand = ['520','1314','5201314'];
             for(var i=0;i<rightCommand.length;i++){
                 if(commandline==rightCommand[i]){
-                    self.outputMsg(2,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
-                    self.outputMsg(3,'/app/images/loading-logo.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
-                    self.outputMsg(2,'/app/images/loading-logo.png','点击领取卡券，<span class="btn-share">分享</span>后更有机会领取520现金红包哦！');
+                    self.outputMsg(2,'/app/images/coach-avatar.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
+                    self.outputMsg(3,'/app/images/coach-avatar.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
+                    self.outputMsg(2,'/app/images/coach-avatar.png','点击领取卡券，呼朋唤友来<span class="btn-share">告白</span>,即可参加Coach 520抢现金红包活动哦！');
+
                     return;
                 }else{
                     if(i==rightCommand.length-1){
-                        self.outputMsg(2,'/app/images/loading-logo.png','爱的信号有误，COACH无法回应你的爱意哦！');
+                        self.outputMsg(2,'/app/images/coach-avatar.png','爱的信号有误，COACH无法回应你的爱意哦！');
                     }
                 }
             }
@@ -107,15 +116,13 @@
                     '</div>'+
                     '</li>';
             }else if(type==3){
-                newMsgHtml = '<li class="item item-left animate fade"><img src="/app/images/coupon.png" alt=""/>'+
+                newMsgHtml = '<li class="item item-left item-coupon animate fade"><img src="/app/images/coupon.png" alt=""/>'+
                     '</li>';
             };
             $('.conversation-list').append(newMsgHtml);
 
         },
         showShareQrcode:function(){
-            $('.popup').addClass('hide');
-            $('.qrcode-share-pop').removeClass('hide');
             //just visit the api
             Api.ifShared();
             //override share
@@ -126,6 +133,8 @@
                     imgUrl: window.location.origin+'/app/images/share-guide.png',
                     success: function () {
                         //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToMoments']);
+                        $('.popup').addClass('hide');
+                        $('.qrcode-share-pop').removeClass('hide');
                     },
                     cancel: function () {
                     }
@@ -139,6 +148,8 @@
                     dataUrl: '',
                     success: function () {
                         //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToFriend']);
+                        $('.popup').addClass('hide');
+                        $('.qrcode-share-pop').removeClass('hide');
                     },
                     cancel: function () {
                     }
@@ -349,16 +360,36 @@
                 $(this).parent().addClass('hide');
             })
         },
-        toMoneyPage:function(){
-            var self = this;
-            //    close the pop
-            self.closePop();
-            $('.btn-get').on('click', function(){
-               $('.qrcode-pop').removeClass('hide').addClass('animate fade');
+        addCouppon:function(i){
+            Api.coupon(function(data){
+                if(data.status){
+                    var cardListJSON = data.msg;
+                    wx.addCard({
+                        cardList: [{
+                            cardId: cardListJSON[i-1].cardId,
+                            cardExt: '{"timestamp":"'+cardListJSON[i-1].cardExt.timestamp+'","signature":"'+cardListJSON[i-1].cardExt.signature+'"}'
+                        }],
+                        success: function(res) {
+                            var cardList = res.cardList;
+                            //alert(JSON.stringfiy(res));
+                        },
+                        fail: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        },
+                        complete: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        },
+                        cancel: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        },
+                        trigger: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        }
+                    });
+                }
+
             });
-            $('.btn-share').on('click',function(){
-                $('.share-pop').removeClass('hide').addClass('animate fade');
-            });
+
         }
 
 
