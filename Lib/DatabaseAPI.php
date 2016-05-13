@@ -8,6 +8,7 @@ class DatabaseAPI extends Base {
 	public function __construct() {
 		$connect = new \mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 		$this->db = $connect;
+		$this->db->query("set names utf8");
 	}
 
 	public function insertCurio($result) {
