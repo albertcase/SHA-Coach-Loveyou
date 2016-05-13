@@ -13,7 +13,16 @@
             $('.loading-wrap').addClass('show');
             var baseurl = ''+'/app';
             var imagesArray = [
+                baseurl + '/images/coach-avatar.png',
+                baseurl + '/images/coupon.png',
+                baseurl + '/images/input-wx-bg.png',
+                baseurl + '/images/link-terms.png',
+                baseurl + '/images/loading-logo.png',
+                baseurl + '/images/qrcode-follow-text.png',
+                baseurl + '/images/qrcode-follow.png',
+                baseurl + '/images/qrcode-share-text.png',
                 baseurl + '/images/qrcode-share.png',
+                baseurl + '/images/share-guide.png',
             ];
             var i = 0;
             new preLoader(imagesArray, {
@@ -24,15 +33,6 @@
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
                     Common.goHomepage();
-                    Api.isFollow(function(data){
-                        console.log(data);
-                        if(data.status==1){
-                        //    followed
-
-                        }else{
-                            $('.qrcode-follow-pop').removeClass('hide');
-                        }
-                    });
 
                     //input and click enter
                     $('#input-tocoach').keypress(function (e) {
