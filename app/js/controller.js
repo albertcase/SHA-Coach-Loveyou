@@ -40,11 +40,23 @@
                         if(e.keyCode=='13'){
                         //    enter keyboard
                             var inputMsg = $(this).val();
+                            if(inputMsg.length){
+                                self.outputMsg(1,headimgurl,inputMsg);
+                                self.compareCommand(inputMsg);
+                                $(this).val('');
+                                $('.pin-inner').scrollTop($('.conversation-list').height());
+                            }
+
+                        }
+                    });
+                    $('#input-tocoach').on('focusout',function(){
+                        //    enter keyboard
+                        var inputMsg = $(this).val();
+                        if(inputMsg.length){
                             self.outputMsg(1,headimgurl,inputMsg);
                             self.compareCommand(inputMsg);
                             $(this).val('');
                             $('.pin-inner').scrollTop($('.conversation-list').height());
-
                         }
                     });
 
@@ -64,6 +76,8 @@
                     $('.wrapper').on('click','.item-coupon',function(){
                         self.addCouppon(0);
                     });
+
+
 
                     self.closePop();
                 }
