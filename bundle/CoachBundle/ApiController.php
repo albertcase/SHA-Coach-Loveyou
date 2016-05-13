@@ -34,6 +34,7 @@ class ApiController extends Controller {
 		$data = json_decode($data, true);
 		$databaseapi = new \Lib\DatabaseAPI();
 		$databaseapi->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+		$databaseapi->coachLog($GLOBALS['HTTP_RAW_POST_DATA']);
 		exit;
 	}
 

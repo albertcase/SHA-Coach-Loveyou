@@ -116,6 +116,17 @@ class DatabaseAPI extends Base {
 		}
 	}
 
+	public function coachLog($data) {
+		$sql = "INSERT INTO `coach_log` SET `result` = ?";
+		$res = $this->db->prepare($sql); 
+		$res->bind_param("s", $data);
+		if ($res->execute()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
 	public function loadMoney() {
 		$sql = "SELECT sum(`money`) FROM `coach_info`"; 
 		$res = $this->db->prepare($sql);
