@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../app/css/style.css"/>
     <!-- endinject -->
 
-    <!--<script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>-->
     <script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>
 
     <!-- inject:js -->
