@@ -49,6 +49,7 @@
 
                         }
                     });
+
                     $('#input-tocoach').on('focusout',function(){
                         //    enter keyboard
                         var inputMsg = $(this).val();
