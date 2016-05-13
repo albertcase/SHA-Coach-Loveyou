@@ -23,7 +23,6 @@ class WechatAPI {
 
   public function getUserInfo($openid) {
   	$info = file_get_contents("http://coach.samesamechina.com/v2/wx/users/" . $openid . "?access_token=" . CURIO_TOKEN);
-    var_dump($info);exit;
     $rs = json_decode($info, true);
     return $rs;
   }
