@@ -296,16 +296,18 @@ body{
   height: 100%;
   top: 0;
   left: 0;
+  .inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+  }
 }
 
 .qrcode-pop{
   background: rgba(255,255,255,0.9);
   .inner{
-    position: absolute;
     @include size(4rem,auto);
-    left: 50%;
-    top: 50%;
-    @include transform(translate(-50%,-50%));
   }
   .qrcode{
     @include size(3.15rem,3.15rem);
@@ -315,6 +317,42 @@ body{
     @include size(1.48rem,0.36rem);
     margin: 0.6rem auto 0;
   }
+}
+
+//for redpacket-pop
+.redpacket-pop{
+  .inner{
+    @include size(6.56rem,8.77rem);
+    @include vendor-prefix(border-radius,5px);
+    background: url("../images/redpacket-bg.png") no-repeat;
+    background-size: 100% 100%;
+    .btn-close{
+      position: absolute;
+      left: 0.2rem;
+      top: 0.4rem;
+      right: auto;
+      &:before{
+        background: #c14840;
+        height: 2px;
+        width: 0.5rem;
+      }
+      &:after{
+        background: #c14840;
+        height: 2px;
+        width: 0.5rem;
+      }
+    }
+  }
+  .logo-2{
+    @include size(1.52rem,1.38rem);
+    margin: 0rem auto;
+    padding: 0.8rem 0;
+  }
+  .packet-tips{
+    @include size(4.21rem,0.45rem);
+    margin: 0 auto;
+  }
+
 }
 
 

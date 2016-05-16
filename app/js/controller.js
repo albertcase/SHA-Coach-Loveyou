@@ -73,6 +73,38 @@
                         self.addCouppon(1);
                     });
 
+                    //test api share
+                    $('.wrapper').on('click','.share-1',function(){
+                        Api.ifShared(function(data){
+                            if(data.status==1){
+                                //    未领取红包，去扫一扫二维码
+                                $('.popup').addClass('hide');
+                                $('.qrcode-share-pop').removeClass('hide');
+
+                            }else if(data.status==2){
+                                //红包发完
+                                //alert('红包发完');
+                                $('.redpacket-pop').removeClass('hide');
+                                $('.got-redpacket').addClass('hide');
+                                $('.no-redpacket').removeClass('hide');
+
+
+                            }else if(data.status==4){
+                                //红包已经领过
+                                alert('红包已经领过');
+                                $('.redpacket-pop').removeClass('hide');
+                                $('.no-redpacket').addClass('hide');
+                                $('.got-redpacket').removeClass('hide');
+
+                            }else{
+                                //
+                                //    alert(data.msg);
+                            }
+
+                        });
+                    });
+                    //====end test===
+
                     //close all pop
                     self.closePop();
                 }
@@ -150,11 +182,18 @@
 
                             }else if(data.status==2){
                                 //红包发完
-                                alert('红包发完');
+                                //alert('红包发完');
+                                $('.redpacket-pop').removeClass('hide');
+                                $('.got-redpacket').addClass('hide');
+                                $('.no-redpacket').removeClass('hide');
+
 
                             }else if(data.status==4){
                                 //红包已经领过
                                 alert('红包已经领过');
+                                $('.redpacket-pop').removeClass('hide');
+                                $('.no-redpacket').addClass('hide');
+                                $('.got-redpacket').removeClass('hide');
 
                             }else{
                                 //
@@ -186,7 +225,12 @@
         },
         closePop:function(){
             $('.btn-close').on('click', function(){
-                $(this).parent().addClass('hide');
+                if($(this).parent().hasClass('inner')){
+                    $(this).parent().parent().addClass('hide');
+                }else{
+                    $(this).parent().addClass('hide');
+                }
+
             })
         },
         addCouppon:function(i){
