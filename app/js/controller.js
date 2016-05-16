@@ -31,13 +31,15 @@
                 },
                 onComplete: function(){
                     //remove the loading and show the first pin
-                    $('.preloading').remove(1000);
+                    $('.preloading').remove(1000)
+                    _hmt.push(['_trackEvent', 'page', 'load', '页面PV - 1']);
                     Common.goHomepage();
 
                     //input and click enter
                     $('#input-tocoach').keypress(function (e) {
 
                         if(e.keyCode=='13'){
+                            _hmt.push(['_trackEvent', 'button', 'click', 'Submit']);
                         //    enter keyboard
                             var inputMsg = $(this).val();
                             if(inputMsg.length){
@@ -54,6 +56,7 @@
                         //    enter keyboard
                         var inputMsg = $(this).val();
                         if(inputMsg.length){
+                            _hmt.push(['_trackEvent', 'button', 'click', 'Submit']);
                             self.outputMsg(1,headimgurl,inputMsg);
                             self.compareCommand(inputMsg);
                             $(this).val('');
@@ -63,6 +66,7 @@
 
                     //click share link
                     $('.wrapper').on('click','.btn-share', function(){
+                        _hmt.push(['_trackEvent', 'button', 'click', 'Share']);
                         $('.popup').addClass('hide');
                         $('.share-pop').removeClass('hide');
                         self.showShareQrcode();
@@ -70,11 +74,17 @@
 
                     //click coupon button
                     $('.wrapper').on('click','.item-coupon',function(){
+                        _hmt.push(['_trackEvent', 'button', 'click', 'Redeem']);
                         self.addCouppon(1);
                     });
 
                     //close all pop
                     self.closePop();
+
+                    //    link-terms
+                    $('.qrcode-share-pop .link-terms').on('click',function(){
+                        _hmt.push(['_trackEvent', 'button', 'click', 'Terms1']);
+                    });
                 }
             })
         },
@@ -139,9 +149,9 @@
                 wx.onMenuShareTimeline({
                     title: '520，告白Coach即可抢现金红包',
                     link: window.location.href,
-                    imgUrl: window.location.origin+'/app/images/wx-share.png',
+                    imgUrl: window.location.origin+'/app/images/wx-share.jpg',
                     success: function () {
-                        //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToMoments']);
+                        _hmt.push(['_trackEvent', 'button', 'click', 'Share to Moments']);
                         self.shareApi();
                     },
                     cancel: function () {
@@ -151,10 +161,11 @@
                     title: '520，告白Coach即可抢现金红包',
                     desc: '520没有被发红包？没关系，快来Coach微信告白，现金红包抢抢抢！',
                     link: window.location.href,
-                    imgUrl: window.location.origin+'/app/images/wx-share.png',
+                    imgUrl: window.location.origin+'/app/images/wx-share.jpg',
                     type: '',
                     dataUrl: '',
                     success: function () {
+                        _hmt.push(['_trackEvent', 'button', 'click', 'Share to friend']);
                         self.shareApi();
                     },
                     cancel: function () {
@@ -168,11 +179,13 @@
             Api.ifShared(function(data){
                 if(data.status==1){
                     //    未领取红包，去扫一扫二维码
+                    _hmt.push(['_trackEvent', 'page', 'load', '页面PV - 6']);
                     $('.popup').addClass('hide');
                     $('.qrcode-share-pop').removeClass('hide');
 
                 }else if(data.status==2){
                     //红包发完
+                    _hmt.push(['_trackEvent', 'page', 'load', '页面PV - 10']);
                     $('.popup').addClass('hide');
                     $('.redpacket-pop').removeClass('hide');
                     $('.got-redpacket').addClass('hide');
@@ -181,6 +194,7 @@
 
                 }else if(data.status==4){
                     //红包已经领过
+                    _hmt.push(['_trackEvent', 'page', 'load', '页面PV - 11']);
                     $('.popup').addClass('hide');
                     $('.redpacket-pop').removeClass('hide');
                     $('.no-redpacket').addClass('hide');

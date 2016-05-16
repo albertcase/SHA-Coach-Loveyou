@@ -433,7 +433,7 @@ body{
 .pin-1{
   .pin-inner{
     padding: 0.2rem;
-    height: 90vh;
+    max-height: 90vh;
     overflow: auto;
   }
   .block-input{
