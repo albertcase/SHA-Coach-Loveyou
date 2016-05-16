@@ -168,9 +168,9 @@
             //override share
             wx.ready(function() {
                 wx.onMenuShareTimeline({
-                    title: '520，土豪Coach用现金红包爱你',
+                    title: '520，告白Coach即可抢现金红包',
                     link: window.location.href,
-                    imgUrl: window.location.origin+'/app/images/share-guide.png',
+                    imgUrl: window.location.origin+'/app/images/wx-share.png',
                     success: function () {
                         //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToMoments']);
 
@@ -206,10 +206,10 @@
                     }
                 });
                 wx.onMenuShareAppMessage({
-                    title: '520，土豪Coach用现金红包爱你',
-                    desc: '520，土豪Coach用现金红包爱你',
+                    title: '520，告白Coach即可抢现金红包',
+                    desc: '520没有被发红包？没关系，快来Coach微信告白，现金红包抢抢抢！',
                     link: window.location.href,
-                    imgUrl: window.location.origin+'/app/images/share-guide.png',
+                    imgUrl: window.location.origin+'/app/images/wx-share.png',
                     type: '',
                     dataUrl: '',
                     success: function () {
