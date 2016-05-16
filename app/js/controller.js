@@ -84,6 +84,7 @@
                     //    link-terms
                     $('.qrcode-share-pop .link-terms').on('click',function(){
                         _hmt.push(['_trackEvent', 'button', 'click', 'Terms1']);
+                        $('.details-pop').removeClass('hide');
                     });
                 }
             })

@@ -355,6 +355,55 @@ body{
 
 }
 
+//for details-pop
+.details-pop{
+  background: #323232;
+  .inner{
+    @include size(6rem,8rem);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .d-title{
+    font-size: 0.36rem;
+    font-weight: bold;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    width: 100%;
+    text-align: center;
+    background: #000;
+    color: #fff;
+  }
+  .d-content{
+    height: 6.8rem;
+    overflow: auto;
+    padding: 0.2rem;
+    font-size: 0.28rem;
+    color: #515151;
+    background: #fff;
+  }
+  .list-terms{
+    .item{
+      margin-top: 0.4rem;
+      p{
+        text-indent: 0.2rem;
+      }
+    }
+  }
+  .btn-close{
+    position: absolute;
+    right: 0rem;
+    top: 0.38rem;
+    &:before{
+      width: 0.5rem;
+      background: #fff;
+    }
+    &:after{
+      width: 0.5rem;
+      background: #fff;
+    }
+  }
+}
+
 
 //for conversation-list
 .conversation-list{
