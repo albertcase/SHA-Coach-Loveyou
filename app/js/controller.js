@@ -164,6 +164,7 @@
 
         },
         showShareQrcode:function(){
+            var self = this;
             //just visit the api
             //override share
             wx.ready(function() {
@@ -173,34 +174,7 @@
                     imgUrl: window.location.origin+'/app/images/wx-share.png',
                     success: function () {
                         //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToMoments']);
-
-                        Api.ifShared(function(data){
-                            if(data.status==1){
-                                //    未领取红包，去扫一扫二维码
-                                $('.popup').addClass('hide');
-                                $('.qrcode-share-pop').removeClass('hide');
-
-                            }else if(data.status==2){
-                                //红包发完
-                                //alert('红包发完');
-                                $('.redpacket-pop').removeClass('hide');
-                                $('.got-redpacket').addClass('hide');
-                                $('.no-redpacket').removeClass('hide');
-
-
-                            }else if(data.status==4){
-                                //红包已经领过
-                                alert('红包已经领过');
-                                $('.redpacket-pop').removeClass('hide');
-                                $('.no-redpacket').addClass('hide');
-                                $('.got-redpacket').removeClass('hide');
-
-                            }else{
-                                //
-                                //    alert(data.msg);
-                            }
-
-                        });
+                        self.shareApi();
                     },
                     cancel: function () {
                     }
@@ -213,13 +187,41 @@
                     type: '',
                     dataUrl: '',
                     success: function () {
-                        //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShareToFriend']);
-                        $('.popup').addClass('hide');
-                        $('.qrcode-share-pop').removeClass('hide');
+                        self.shareApi();
                     },
                     cancel: function () {
                     }
                 });
+
+            });
+        },
+        shareApi:function(){
+            //share success then call share api
+            Api.ifShared(function(data){
+                if(data.status==1){
+                    //    未领取红包，去扫一扫二维码
+                    $('.popup').addClass('hide');
+                    $('.qrcode-share-pop').removeClass('hide');
+
+                }else if(data.status==2){
+                    //红包发完
+                    //alert('红包发完');
+                    $('.redpacket-pop').removeClass('hide');
+                    $('.got-redpacket').addClass('hide');
+                    $('.no-redpacket').removeClass('hide');
+
+
+                }else if(data.status==4){
+                    //红包已经领过
+                    alert('红包已经领过');
+                    $('.redpacket-pop').removeClass('hide');
+                    $('.no-redpacket').addClass('hide');
+                    $('.got-redpacket').removeClass('hide');
+
+                }else{
+                    //
+                    //    alert(data.msg);
+                }
 
             });
         },
