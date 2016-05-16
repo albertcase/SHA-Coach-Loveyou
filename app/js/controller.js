@@ -107,7 +107,7 @@
                     return;
                 }else{
                     if(i==rightCommand.length-1){
-                        self.outputMsg(2,'/app/images/coach-avatar.png','爱的信号有误，COACH无法回应你的爱意哦！');
+                        self.outputMsg(2,'/app/images/coach-avatar.png','爱的信号有误，COACH无法回复你的爱意，请重新输入哦！');
                     }
                 }
             }
