@@ -407,6 +407,7 @@ body{
 
 //for conversation-list
 .conversation-list{
+  padding: 0.2rem 0.2rem 1.2rem;
   .avatar{
     position: absolute;
     @include size(10vw,10vw);
@@ -475,15 +476,24 @@ body{
       }
     }
   }
+  .item-coupon{
+    width: 6.41rem;
+    height: 2.82rem;
+    margin: 0 auto 0.4rem;
+  }
 }
 
 
 //for pin-1
+html,body{
+  height: 100%;
+  overflow: hidden;
+}
 .pin-1{
   .pin-inner{
-    padding: 0.2rem;
-    max-height: 90vh;
     overflow: auto;
+    height: 100%;
+
   }
   .block-input{
     position: fixed;

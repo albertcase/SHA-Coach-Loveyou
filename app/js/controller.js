@@ -37,16 +37,15 @@
 
                     //input and click enter
                     $('#input-tocoach').keypress(function (e) {
-
                         if(e.keyCode=='13'){
                             _hmt.push(['_trackEvent', 'button', 'click', 'Submit']);
                         //    enter keyboard
                             var inputMsg = $(this).val();
                             if(inputMsg.length){
-                                self.outputMsg(1,headimgurl,inputMsg);
+                                self.outputMsg(1,headimgurl,inputMsg,'delay0','delay0','delay0');
                                 self.compareCommand(inputMsg);
                                 $(this).val('');
-                                $('.pin-inner').scrollTop($('.conversation-list').height());
+                                $('.pin-inner').scrollTop($('.conversation-list').height()-$('.pin-inner').height());
                             }
 
                         }
@@ -57,10 +56,10 @@
                         var inputMsg = $(this).val();
                         if(inputMsg.length){
                             _hmt.push(['_trackEvent', 'button', 'click', 'Submit']);
-                            self.outputMsg(1,headimgurl,inputMsg);
+                            self.outputMsg(1,headimgurl,inputMsg,'delay0','delay0','delay0');
                             self.compareCommand(inputMsg);
                             $(this).val('');
-                            $('.pin-inner').scrollTop($('.conversation-list').height());
+                            $('.pin-inner').scrollTop($('.conversation-list').height()-$('.pin-inner').height());
                         }
                     });
 
@@ -100,26 +99,26 @@
             var rightCommand = ['520','1314','5201314'];
             for(var i=0;i<rightCommand.length;i++){
                 if(commandline==rightCommand[i]){
-                    self.outputMsg(2,'/app/images/coach-avatar.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
-                    self.outputMsg(3,'/app/images/coach-avatar.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！');
-                    self.outputMsg(2,'/app/images/coach-avatar.png','点击领取卡券，呼朋唤友来<span class="btn-share">告白</span>,即可参加Coach 520抢现金红包活动哦！');
+                    self.outputMsg(2,'/app/images/coach-avatar.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！','delay1','delay1','delay1');
+                    self.outputMsg(3,'/app/images/coach-avatar.png','么么哒~COACH收到你的真情告白啦，马上为你送上专属的520优惠券，爱你哟！','delay1','delay1','delay2');
+                    self.outputMsg(2,'/app/images/coach-avatar.png','点击领取卡券，呼朋唤友来<span class="btn-share">告白</span>,即可参加Coach 520抢现金红包活动哦！','delay1','delay3','delay1');
 
                     return;
                 }else{
                     if(i==rightCommand.length-1){
-                        self.outputMsg(2,'/app/images/coach-avatar.png','爱的信号有误，COACH无法回复你的爱意，请重新输入哦！');
+                        self.outputMsg(2,'/app/images/coach-avatar.png','爱的信号有误，COACH无法回复你的爱意，请重新输入哦！','delay1','delay1','delay1');
                     }
                 }
             }
         },
-        outputMsg:function(type,avatar,inputvalue){
+        outputMsg:function(type,avatar,inputvalue,delayclass1,delayclass2,delayclass3){
             /*
             * the type is represent the message type,such as 1 is user message,2 is system message,3 is coupon
             * inputvalue is the message
             * */
             var newMsgHtml='';
             if(type==1){
-                newMsgHtml = '<li class="item item-right animate fade">'+
+                newMsgHtml = '<li class="item item-right animate fade '+delayclass1+'">'+
                     '<div class="avatar">'+
                     '<img src="'+avatar+'" alt=""/>'+
                     '</div>'+
@@ -128,7 +127,7 @@
                     '</li>';
 
             }else if(type==2){
-                newMsgHtml = '<li class="item item-left animate fade">'+
+                newMsgHtml = '<li class="item item-left animate fade '+delayclass2+'">'+
                     '<div class="avatar">'+
                     '<img src="'+avatar+'" alt=""/>'+
                     '</div>'+
@@ -136,7 +135,7 @@
                     '</div>'+
                     '</li>';
             }else if(type==3){
-                newMsgHtml = '<li class="item item-left item-coupon animate fade"><img src="/app/images/coupon.png" alt=""/>'+
+                newMsgHtml = '<li class="item item-left item-coupon animate fade '+delayclass3+'"><img src="/app/images/coupon.png" style="display: block" alt=""/>'+
                     '</li>';
             };
             $('.conversation-list').append(newMsgHtml);

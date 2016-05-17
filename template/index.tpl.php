@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coach蔻驰--520</title>
+    <title>520告白日</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" >
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,80 +18,80 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
-    </script>
+        </script>
 
-    <!--<script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>-->
-    <script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>
+        <!--<script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>-->
+        <script type="text/javascript" src="http://coach.samesamechina.com/api/v1/js/9e2bab26-b3cf-4942-b182-fe3e66a77f10/wechat"></script>
 
-    <!-- inject:js -->
-    <script src="/app/js/widget/widget_index.js"></script>
-    <!-- endinject -->
-    <script>var headimgurl = '<?php echo $headimgurl;?>'</script>
-</head>
-<body>
-<div class="preloading">
-    <div class="inner">
-        <div class="l-logo">
-            <img src="/app/images/loading-logo.png" alt=""/>
-        </div>
-        <div class="icon-loading">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <p class="des-loading">
-            目前涌入的小伙伴过多<br>
-            页面正在跳转中，请耐心等待。
-        </p>
-    </div>
-</div>
-<div class="wrapper">
-    <section class="pin pin-1">
-        <div class="pin-inner">
-            <ul class="conversation-list">
-                <li class="item item-left animate fade delay1">
-                    <div class="avatar">
-                        <img src="/app/images/coach-avatar.png" alt=""/>
-                    </div>
-                    <div class="words">
-                        520马上就要到了哟
-                    </div>
-                </li>
-                <li class="item item-left animate fade delay2">
-                    <div class="avatar">
-                        <img src="/app/images/coach-avatar.png" alt=""/>
-                    </div>
-                    <div class="words">
-                        不管你有没有收到满满的心意
-                    </div>
-                </li>
-                <li class="item item-left animate fade delay3">
-                    <div class="avatar">
-                        <img src="/app/images/coach-avatar.png" alt=""/>
-                    </div>
-                    <div class="words">
-                        只要现在向COACH发送数字表白，就会收到爱的大礼物哦
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="block-input">
-            <input name="ok" type="number" id="input-tocoach"/>
-        </div>
-    </section>
-
-    <!-- redpacket pop-->
-    <div class="popup redpacket-pop hide">
-        <div class="inner">
-            <div class="logo-2">
-                <img src="/app/images/logo-2.png" alt=""/>
+        <!-- inject:js -->
+        <script src="/app/js/widget/widget_index.js"></script>
+        <!-- endinject -->
+        <script>var headimgurl = '<?php echo $headimgurl;?>'</script>
+        </head>
+        <body>
+        <div class="preloading">
+            <div class="inner">
+                <div class="l-logo">
+                    <img src="/app/images/loading-logo.png" alt=""/>
+                </div>
+                <div class="icon-loading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <p class="des-loading">
+                    目前涌入的小伙伴过多<br>
+                    页面正在跳转中，请耐心等待。
+                </p>
             </div>
-            <div class="packet-tips">
-                <img class="no-redpacket hide" src="/app/images/no-redpacket.png" alt=""/>
-                <img class="got-redpacket hide" src="/app/images/got-redpacket.png" alt=""/>
-            </div>
-            <div class="btn-close"></div>
         </div>
+        <div class="wrapper">
+            <section class="pin pin-1">
+                <div class="pin-inner">
+                    <ul class="conversation-list">
+                        <li class="item item-left animate fade delay1">
+                            <div class="avatar">
+                                <img src="/app/images/coach-avatar.png" alt=""/>
+                            </div>
+                            <div class="words">
+                                520马上就要到了哟
+                            </div>
+                        </li>
+                        <li class="item item-left animate fade delay2">
+                            <div class="avatar">
+                                <img src="/app/images/coach-avatar.png" alt=""/>
+                            </div>
+                            <div class="words">
+                                不管你有没有收到满满的心意
+                            </div>
+                        </li>
+                        <li class="item item-left animate fade delay3">
+                            <div class="avatar">
+                                <img src="/app/images/coach-avatar.png" alt=""/>
+                            </div>
+                            <div class="words">
+                                只要现在向COACH发送<strong>【数字表白】</strong>，就会收到爱的大礼物哦
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-input">
+                    <input name="ok" type="tel" id="input-tocoach"/>
+                </div>
+            </section>
+
+            <!-- redpacket pop-->
+            <div class="popup redpacket-pop hide">
+                <div class="inner">
+                    <div class="logo-2">
+                        <img src="/app/images/logo-2.png" alt=""/>
+                    </div>
+                    <div class="packet-tips">
+                        <img class="no-redpacket hide" src="/app/images/no-redpacket.png" alt=""/>
+                        <img class="got-redpacket hide" src="/app/images/got-redpacket.png" alt=""/>
+                    </div>
+                    <div class="btn-close"></div>
+                </div>
     </div>
 
     <!-- popup share-pop-->
