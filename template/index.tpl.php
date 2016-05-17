@@ -76,7 +76,7 @@
                     </ul>
                 </div>
                 <div class="block-input">
-                    <input name="ok" type="number" id="input-tocoach"/>
+                    <input name="ok" type="tel" id="input-tocoach"/>
                 </div>
             </section>
 
