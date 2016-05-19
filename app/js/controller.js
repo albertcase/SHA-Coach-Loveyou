@@ -15,7 +15,7 @@
             var imagesArray = [
                 baseurl + '/images/coach-avatar.png',
                 baseurl + '/images/coupon.png',
-                baseurl + '/images/redpacket.png',
+                baseurl + '/images/redpacket-2.png',
                 baseurl + '/images/got-redpacket.png',
                 baseurl + '/images/input-wx-bg.png',
                 baseurl + '/images/link-terms.png',
@@ -148,7 +148,7 @@
                     '<div class="avatar">'+
                     '<img src="'+avatar+'" alt=""/>'+
                     '</div>'+
-                    '<div class="words"><img src="/app/images/redpacket.png">'+
+                    '<div class="words"><img src="/app/images/redpacket-2.png">'+
                     '</div>'+
                     '</li>';
             };
