@@ -481,6 +481,18 @@ body{
     height: 2.82rem;
     margin: 0 auto 0.4rem;
   }
+  .item-redpacket{
+    .words{
+      @include size(4.33rem,1.78rem);
+      padding: 0rem;
+      box-sizing: border-box;
+      border: none;
+      background: transparent;
+      &:after{
+        display: none;
+      }
+    }
+  }
 }
 
 
