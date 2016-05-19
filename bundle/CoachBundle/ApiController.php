@@ -7,9 +7,13 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
-		$userapi = new \Lib\RedpacketAPI();
+		//$userapi = new \Lib\RedpacketAPI();
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		echo $count520 = $DatabaseAPI->loadCount(520);
+		echo '<br>';
+		echo $count520 = $DatabaseAPI->loadCount(100);
 		//var_dump($userapi->sendredpack('oKCDxjivJ92ky4dxLT8dt1jcXtn4'));
-		var_dump($userapi->sendredpack('oKCDxjoxhlcJnOl6-xOTNZRTEo9s'));
+		//var_dump($userapi->sendredpack('oKCDxjoxhlcJnOl6-xOTNZRTEo9s'));
 		
 		exit;
 		
@@ -122,8 +126,16 @@ class ApiController extends Controller {
 		$rand = mt_rand(1,69900);	
 		if ($rand <= 500) {
 			$money = 520;
-		} else {
+			$count520 = $DatabaseAPI->loadCount(520);
+			if ($count520 >= 500) {
+				$money = 100;
+			}
+		} else {	
 			$money = 100;
+			$count100 = $DatabaseAPI->loadCount(100);
+			if ($count100 >= 69400) {
+				$money = 520;
+			}
 		}
 		if ($DatabaseAPI->saveMoney($user->uid, $money)) {
 			$user->money = $money;

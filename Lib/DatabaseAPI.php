@@ -139,6 +139,18 @@ class DatabaseAPI extends Base {
 		return 0;
 	}
 
+	public function loadCount($money) {
+		$sql = "SELECT count(id) FROM `coach_info` where `money`= ?"; 
+		$res = $this->db->prepare($sql);
+		$res->bind_param("s", $money);
+		$res->execute();
+		$res->bind_result($num);
+		if($res->fetch()) {
+			return $num;
+		}
+		return 0;
+	}
+
 	public function saveMoney($uid, $money) {
 		$sql = "UPDATE `coach_info` SET `money` = ? WHERE `id` = ?";
 		$res = $this->db->prepare($sql); 
