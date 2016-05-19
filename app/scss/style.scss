@@ -483,12 +483,13 @@ body{
   }
   .item-redpacket{
     .words{
-      @include size(5rem,2.06rem);
-      background: #fd9e2b;
-      padding: 0.05rem;
+      @include size(4.33rem,1.78rem);
+      padding: 0rem;
+      box-sizing: border-box;
       border: none;
+      background: transparent;
       &:after{
-        background: #fd9e2b;
+        display: none;
       }
     }
   }
