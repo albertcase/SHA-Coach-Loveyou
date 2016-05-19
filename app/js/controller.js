@@ -15,13 +15,18 @@
             var imagesArray = [
                 baseurl + '/images/coach-avatar.png',
                 baseurl + '/images/coupon.png',
+                baseurl + '/images/got-redpacket.png',
                 baseurl + '/images/input-wx-bg.png',
                 baseurl + '/images/link-terms.png',
                 baseurl + '/images/loading-logo.png',
+                baseurl + '/images/logo-2.png',
+                baseurl + '/images/no-redpacket.png',
                 baseurl + '/images/qrcode-follow-text.png',
                 baseurl + '/images/qrcode-follow.png',
                 baseurl + '/images/qrcode-share-text.png',
                 baseurl + '/images/qrcode-share.png',
+                baseurl + '/images/redpacket-bg.png',
+                baseurl + '/images/wx-share.jpg',
                 baseurl + '/images/share-guide.png'
             ];
             var i = 0;
@@ -147,7 +152,7 @@
             //override share
             wx.ready(function() {
                 wx.onMenuShareTimeline({
-                    title: '520，告白Coach即可抢现金红包',
+                    title: 'Coach520|速速来表白，狠狠抢红包',
                     link: window.location.href,
                     imgUrl: window.location.origin+'/app/images/wx-share.jpg',
                     success: function () {
@@ -158,7 +163,7 @@
                     }
                 });
                 wx.onMenuShareAppMessage({
-                    title: '520，告白Coach即可抢现金红包',
+                    title: 'Coach520|速速来表白，狠狠抢红包',
                     desc: '520没有被发红包？没关系，快来Coach微信告白，现金红包抢抢抢！',
                     link: window.location.href,
                     imgUrl: window.location.origin+'/app/images/wx-share.jpg',
