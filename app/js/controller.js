@@ -15,13 +15,18 @@
             var imagesArray = [
                 baseurl + '/images/coach-avatar.png',
                 baseurl + '/images/coupon.png',
+                baseurl + '/images/got-redpacket.png',
                 baseurl + '/images/input-wx-bg.png',
                 baseurl + '/images/link-terms.png',
                 baseurl + '/images/loading-logo.png',
+                baseurl + '/images/logo-2.png',
+                baseurl + '/images/no-redpacket.png',
                 baseurl + '/images/qrcode-follow-text.png',
                 baseurl + '/images/qrcode-follow.png',
                 baseurl + '/images/qrcode-share-text.png',
                 baseurl + '/images/qrcode-share.png',
+                baseurl + '/images/redpacket-bg.png',
+                baseurl + '/images/wx-share.jpg',
                 baseurl + '/images/share-guide.png'
             ];
             var i = 0;
