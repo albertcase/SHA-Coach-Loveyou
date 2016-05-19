@@ -86,8 +86,13 @@ gulp.task('generate_qrcode',['css','qrcodejs'], function () {
 });
 
 
-gulp.task('template',['generate_index','generate_qrcode']);
 
+//watch the template
+gulp.task('watch',function(){
+    gulp.watch(path.all,['generate_index','generate_qrcode']);
+});
+
+//gulp default
 gulp.task('default',['browser-sync']);
 
 
