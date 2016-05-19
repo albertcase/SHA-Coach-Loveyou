@@ -482,9 +482,15 @@ body{
     margin: 0 auto 0.4rem;
   }
   .item-redpacket{
-    width: 6.4rem;
-    height: 2.64rem;
-    margin: 0 auto 0.4rem;
+    .words{
+      @include size(5rem,2.06rem);
+      background: #fd9e2b;
+      padding: 0.05rem;
+      border: none;
+      &:after{
+        background: #fd9e2b;
+      }
+    }
   }
 }
 
