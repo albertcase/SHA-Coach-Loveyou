@@ -4,7 +4,7 @@
 $(document).ready(function(){
     wx.ready(function() {
         wx.onMenuShareTimeline({
-            title: '520，告白Coach即可抢现金红包',
+            title: 'Coach520|速速来表白，狠狠抢红包',
             link: window.location.href,
             imgUrl: window.location.origin+'/app/images/wx-share.jpg',
             success: function () {
@@ -14,7 +14,7 @@ $(document).ready(function(){
             }
         });
         wx.onMenuShareAppMessage({
-            title: '520，告白Coach即可抢现金红包',
+            title: 'Coach520|速速来表白，狠狠抢红包',
             desc: '520没有被发红包？没关系，快来Coach微信告白，现金红包抢抢抢！',
             link: window.location.href,
             imgUrl: window.location.origin+'/app/images/wx-share.jpg',
