@@ -246,6 +246,18 @@ class DatabaseAPI extends Base {
 		return NULL;
 	}
 
+	public function findUserOverRedpacket() {
+		$sql = "SELECT openid FROM `coach_info` WHERE status=0 and money<>0"; 
+		//$sql = "select distinct(openid) as openid from coach_redpacket_log where msg='FREQ_LIMIT'"; 
+		$res = $this->db->query($sql);
+		$data = array();
+		while($rows = $res->fetch_array(MYSQLI_ASSOC))
+		{
+			$data[] = $rows;
+		}	
+		return $data;
+	}
+
 	
 
 }

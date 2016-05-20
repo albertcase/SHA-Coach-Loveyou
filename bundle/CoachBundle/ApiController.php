@@ -9,9 +9,9 @@ class ApiController extends Controller {
 	public function testAction() {
 		//$userapi = new \Lib\RedpacketAPI();
 		$DatabaseAPI = new \Lib\DatabaseAPI();
-		echo $count520 = $DatabaseAPI->loadCount(520);
-		echo '<br>';
-		echo $count520 = $DatabaseAPI->loadCount(100);
+		echo $count520 = $DatabaseAPI->findUserOverRedpacket();
+		//echo '<br>';
+		//echo $count520 = $DatabaseAPI->loadCount(100);
 		//var_dump($userapi->sendredpack('oKCDxjivJ92ky4dxLT8dt1jcXtn4'));
 		//var_dump($userapi->sendredpack('oKCDxjoxhlcJnOl6-xOTNZRTEo9s'));
 		
