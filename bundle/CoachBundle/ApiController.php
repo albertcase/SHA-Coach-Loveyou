@@ -7,6 +7,7 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
+		set_time_limit(0);
 		$userapi = new \Lib\RedpacketAPI();
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$rs = $DatabaseAPI->findUserOverRedpacket();
