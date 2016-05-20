@@ -125,23 +125,24 @@ class ApiController extends Controller {
 		}
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$nowMoney = $DatabaseAPI->loadMoney(); 
-		if ($nowMoney >= 7200000) {
+		if ($nowMoney >= 9000000) {
 			return $this->statusPrint(2, '红包已经发完了');
 		}	
-		$rand = mt_rand(1,69900);	
-		if ($rand <= 500) {
-			$money = 520;
-			$count520 = $DatabaseAPI->loadCount(520);
-			if ($count520 >= 500) {
-				$money = 100;
-			}
-		} else {	
-			$money = 100;
-			$count100 = $DatabaseAPI->loadCount(100);
-			if ($count100 >= 69400) {
-				$money = 520;
-			}
-		}
+		$money = 100;
+		// $rand = mt_rand(1,69900);	
+		// if ($rand <= 500) {
+		// 	$money = 520;
+		// 	$count520 = $DatabaseAPI->loadCount(520);
+		// 	if ($count520 >= 500) {
+		// 		$money = 100;
+		// 	}
+		// } else {	
+		// 	$money = 100;
+		// 	$count100 = $DatabaseAPI->loadCount(100);
+		// 	if ($count100 >= 69400) {
+		// 		$money = 520;
+		// 	}
+		// }
 		if ($DatabaseAPI->saveMoney($user->uid, $money)) {
 			$user->money = $money;
 			return $this->statusPrint(1, $money);
