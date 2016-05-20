@@ -7,16 +7,17 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
-		set_time_limit(0);
-		$userapi = new \Lib\RedpacketAPI();
-		$DatabaseAPI = new \Lib\DatabaseAPI();
-		$rs = $DatabaseAPI->findUserOverRedpacket();
-		echo "<pre>";
-		for ($i = 0; $i < count($rs); $i++) {
-			var_dump($userapi->sendredpack($rs[$i]['openid']));
-		}
-		//echo '<br>';
-		//echo $count520 = $DatabaseAPI->loadCount(100);
+		// set_time_limit(0);
+		// $userapi = new \Lib\RedpacketAPI();
+		 $DatabaseAPI = new \Lib\DatabaseAPI();
+		// $rs = $DatabaseAPI->findUserOverRedpacket();
+		// echo "<pre>";
+		// for ($i = 0; $i < count($rs); $i++) {
+		// 	var_dump($userapi->sendredpack($rs[$i]['openid']));
+		// }
+		 echo $count520 = $DatabaseAPI->loadCount(520);
+		echo '<br>';
+		echo $count520 = $DatabaseAPI->loadCount(100);
 		//var_dump($userapi->sendredpack('oKCDxjivJ92ky4dxLT8dt1jcXtn4'));
 		//var_dump($userapi->sendredpack('oKCDxjoxhlcJnOl6-xOTNZRTEo9s'));
 		
