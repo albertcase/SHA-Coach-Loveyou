@@ -7,11 +7,13 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
-		//$userapi = new \Lib\RedpacketAPI();
+		$userapi = new \Lib\RedpacketAPI();
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$rs = $DatabaseAPI->findUserOverRedpacket();
 		echo "<pre>";
-		print_r($rs);
+		for ($i = 0; $i < count($rs); $i++) {
+			var_dump($userapi->sendredpack($rs[$i]['openid']));
+		}
 		//echo '<br>';
 		//echo $count520 = $DatabaseAPI->loadCount(100);
 		//var_dump($userapi->sendredpack('oKCDxjivJ92ky4dxLT8dt1jcXtn4'));
